@@ -8,7 +8,7 @@ const Contact = () => {
                 <title>Contract Sentinel</title>
             </Head>
             <Header />
-            Contact Us
+            <div className="text-center w-full">Up coming...</div>
             <BuildspaceLogo />
         </div>
     );

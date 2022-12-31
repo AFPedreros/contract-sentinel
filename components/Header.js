@@ -12,10 +12,10 @@ const Header = () => {
 
     return (
         <header
-            className="sticky top-0 py-10 px-6 flex justify-between max-w-4xl mx-auto
-        z-20 items-center"
+            className="top-0 px-6 py-6 flex justify-between mx-auto
+        z-20 items-center md:py-10 md:px-20"
         >
-            <Link className="font-bold hover:text-cyan-500" href="/">
+            <Link className="text-xl md:text-2xl hover:text-cyan-500" href="/">
                 Contract Sentinel
             </Link>
             <div className="hidden md:gap-10 md:flex">
@@ -51,19 +51,19 @@ const Header = () => {
             {toggle ? (
                 <div className="md:hidden text-center absolute flex flex-col top-20 right-0 h-screen w-full bg-white">
                     <Link
-                        className="border-b border-white hover:text-cyan-500"
+                        className="border-b text-xl py-4 border-white hover:text-cyan-500"
                         href="/audit-contract"
                     >
                         Audit
                     </Link>
                     <Link
-                        className="border-b border-white hover:text-cyan-500"
+                        className="border-b text-xl py-4 border-white hover:text-cyan-500"
                         href="/contact-us"
                     >
                         Contact
                     </Link>
                     <Link
-                        className="border-b border-white hover:text-cyan-500"
+                        className="border-b text-xl py-4 border-white hover:text-cyan-500"
                         href="/about-us"
                     >
                         About

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const Audit = () => {
     const [userInput, setUserInput] = useState("");
-    const [apiOutput, setApiOutput] = useState("");
+    const [apiOutput, setApiOutput] = useState();
     const [isGenerating, setIsGenerating] = useState(false);
 
     const callGenerateEndpoint = async () => {
@@ -22,13 +22,34 @@ const Audit = () => {
 
         const data = await response.json();
         const { output } = data;
+        const linesArray = parseVulnerabilities(output.text);
+        const vulnerabilities = linesArray.filter((x) => x !== "" && x !== " ");
+        const vulElement = vulnerabilities.map((vul, index) => {
+            return (
+                <p key={index} className="mt-4">
+                    {vul}
+                </p>
+            );
+        });
+        console.log(vulnerabilities);
+        console.log(vulElement);
 
-        setApiOutput(`${output.text}`);
+        setApiOutput(vulElement);
         setIsGenerating(false);
     };
 
     const onUserChangedText = (event) => {
         setUserInput(event.target.value);
+    };
+
+    const parseVulnerabilities = (vulnerabilityString) => {
+        const vulnerabilities = [];
+
+        vulnerabilityString.split("\n").forEach((line) => {
+            vulnerabilities.push(line);
+        });
+
+        return vulnerabilities;
     };
 
     return (
@@ -37,26 +58,23 @@ const Audit = () => {
                 <title>Contract Sentinel</title>
             </Head>
             <Header />
-            <div>
-                <div className="prompt-container">
+            <div className="my-10 mx-6 md:mx-auto md:w-2/3 h-fit p-6 rounded shadow-md">
+                <div className="">
                     <textarea
                         placeholder="Paste your Smart Contract"
-                        className="prompt-box"
+                        className="border border-slate-300 w-full rounded p-4 h-[36rem] focus:outline-none
+                        focus:border-cyan-500"
                         value={userInput}
                         onChange={onUserChangedText}
                     />
-                    <div className="prompt-buttons">
-                        <a
-                            className={
-                                isGenerating
-                                    ? "generate-button loading"
-                                    : "generate-button"
-                            }
-                            onClick={callGenerateEndpoint}
-                        >
+                    <div
+                        className="bg-black text-md rounded-2xl w-fit mt-6 px-6 py-2 text-white
+                    font-regular tracking-wide cursor-pointer"
+                    >
+                        <a onClick={callGenerateEndpoint}>
                             <div className="generate">
                                 {isGenerating ? (
-                                    <span className="loader"></span>
+                                    <span>Generating...</span>
                                 ) : (
                                     <p>Generate</p>
                                 )}
@@ -66,15 +84,10 @@ const Audit = () => {
                 </div>
             </div>
             {apiOutput && (
-                <div className="output">
-                    <div className="output-header-container">
-                        <div className="output-header">
-                            <h3>Output</h3>
-                        </div>
-                    </div>
-                    <div className="output-content">
-                        <p>{apiOutput}</p>
-                    </div>
+                <div className="my-10 mx-auto w-2/3 h-fit p-6 rounded shadow-md">
+                    <h3 className="text-xl font-semibold mb-6">Output</h3>
+
+                    {apiOutput}
                 </div>
             )}
             <BuildspaceLogo />

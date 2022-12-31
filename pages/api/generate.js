@@ -23,7 +23,7 @@ const generateAction = async (req, res) => {
     // console.log(basePromptOutput.text);
 
     if (basePromptOutput.text.toLowerCase().includes("yes")) {
-        const secondPrompt = `Find vulnerabilities in this contract:
+        const secondPrompt = `Please analyze this smart contract and identify any vulnerabilities it may have. Also, provide a brief explanation of each vulnerability if possible:
         `;
 
         baseCompletion = await openai.createCompletion({
@@ -36,6 +36,7 @@ const generateAction = async (req, res) => {
 
         basePromptOutput = baseCompletion.data.choices.pop();
     }
+    console.log(basePromptOutput);
 
     res.status(200).json({ output: basePromptOutput });
 };

@@ -22,7 +22,7 @@ const Home = () => {
                 </div>
 
                 <Link
-                    className=" bg-black text-md rounded-2xl w-fit m-auto mt-10 px-10 py-4 text-white
+                    className="bg-black text-md rounded-2xl w-fit m-auto mt-10 px-10 py-4 text-white
                     font-semibold tracking-wide md:text-xl"
                     href="/audit-contract"
                 >

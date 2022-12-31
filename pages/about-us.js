@@ -8,7 +8,7 @@ const About = () => {
                 <title>Contract Sentinel</title>
             </Head>
             <Header />
-            About Us
+            <div className="text-center w-full">Up coming...</div>
             <BuildspaceLogo />
         </div>
     );
