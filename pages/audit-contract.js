@@ -63,7 +63,7 @@ const Audit = () => {
                     <textarea
                         placeholder="Paste your Smart Contract"
                         className="border border-slate-300 w-full rounded p-4 h-[36rem] focus:outline-none
-                        focus:border-cyan-500"
+                        focus:border-cyan-500 resize-none"
                         value={userInput}
                         onChange={onUserChangedText}
                     />
