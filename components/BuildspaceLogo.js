@@ -5,7 +5,7 @@ const BuildspaceLogo = () => {
     return (
         <div className="badge-container grow">
             <a
-                href="https://buildspace.so/builds/ai-writer"
+                href="https://buildspace.so/nights-and-weekends"
                 target="_blank"
                 rel="noreferrer"
             >
