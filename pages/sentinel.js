@@ -53,23 +53,30 @@ const Audit = () => {
     };
 
     return (
-        <div>
+        <div className="text-white">
             <Head>
                 <title>Contract Sentinel</title>
             </Head>
             <Header />
-            <div className="my-10 mx-6 md:mx-auto md:w-2/3 h-fit p-6 rounded shadow-md">
-                <div className="">
+            <div className="text-white">
+                <div className="mb-10 bg-[#232938] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded">
+                    <h1 className="text-xl font-semibold mb-2   ">
+                        Audit your smart contract
+                    </h1>
+                    <p className="pb-4 mb-8 border-b border-white">
+                        Add your smart contract in the app for testing possible
+                        vulnerabilities
+                    </p>
                     <textarea
                         placeholder="Paste your Smart Contract"
-                        className="border border-slate-300 w-full rounded p-4 h-[36rem] focus:outline-none
-                        focus:border-cyan-500 resize-none"
+                        className="w-full rounded p-4 h-[28rem] focus:border focus:outline-none
+                        focus:border-[#00B8EE] resize-none bg-[#101727]"
                         value={userInput}
                         onChange={onUserChangedText}
                     />
                     <div
-                        className="bg-black text-md rounded-2xl w-fit mt-6 px-6 py-2 text-white
-                    font-regular tracking-wide cursor-pointer"
+                        className="bg-[#00B8EE] text-md rounded-full w-fit mt-6 px-6 py-2 text-white
+                    font-regular tracking-wide cursor-pointer hover:bg-[#017295]"
                     >
                         <a onClick={callGenerateEndpoint}>
                             <div className="generate">
@@ -84,7 +91,7 @@ const Audit = () => {
                 </div>
             </div>
             {apiOutput && (
-                <div className="my-10 mx-auto w-2/3 h-fit p-6 rounded shadow-md">
+                <div className="mt-10 mb-20 mx-auto w-2/3 h-fit p-6 rounded bg-[#232938]">
                     <h3 className="text-xl font-semibold mb-6">Output</h3>
 
                     {apiOutput}

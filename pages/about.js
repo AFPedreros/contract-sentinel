@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Header from "../components/Header";
 import BuildspaceLogo from "../components/BuildspaceLogo";
-const Contact = () => {
+const About = () => {
     return (
-        <div>
+        <div className="text-white">
             <Head>
                 <title>Contract Sentinel</title>
             </Head>
@@ -14,4 +14,4 @@ const Contact = () => {
     );
 };
 
-export default Contact;
+export default About;

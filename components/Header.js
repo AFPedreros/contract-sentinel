@@ -20,25 +20,25 @@ const Header = () => {
             </Link>
             <div className="hidden md:gap-10 md:flex">
                 <Link
-                    className="border-b border-white hover:text-cyan-500 hover:border-solid
-                    hover:border-b hover:border-cyan-500"
-                    href="/audit-contract"
+                    className="border-b border-[#101727] hover:text-[#00B8EE] hover:border-solid
+                    hover:border-b hover:border-[#00B8EE]"
+                    href="/sentinel"
                 >
-                    Audit
+                    The Sentinel
                 </Link>
                 <Link
-                    className="border-b border-white hover:text-cyan-500 hover:border-solid
-                    hover:border-b hover:border-cyan-500"
-                    href="/contact-us"
-                >
-                    Contact
-                </Link>
-                <Link
-                    className="border-b border-white hover:text-cyan-500 hover:border-solid
-                    hover:border-b hover:border-cyan-500"
-                    href="/about-us"
+                    className="border-b border-[#101727] hover:text-[#00B8EE] hover:border-solid
+                    hover:border-b hover:border-[#00B8EE]"
+                    href="/about"
                 >
                     About
+                </Link>
+                <Link
+                    className="border-b border-[#101727] hover:text-[#00B8EE] hover:border-solid
+                    hover:border-b hover:border-[#00B8EE]"
+                    href="/contact"
+                >
+                    Contact
                 </Link>
             </div>
             <button onClick={toggleMenu} className="block md:hidden">
@@ -51,22 +51,22 @@ const Header = () => {
             {toggle ? (
                 <div className="md:hidden text-center absolute flex flex-col top-20 right-0 h-screen w-full bg-white">
                     <Link
-                        className="border-b text-xl py-4 border-white hover:text-cyan-500"
-                        href="/audit-contract"
+                        className="border-b text-xl py-4 border-[#101727] hover:text-[#00B8EE]"
+                        href="/sentinel"
                     >
-                        Audit
+                        The Sentinel
                     </Link>
                     <Link
-                        className="border-b text-xl py-4 border-white hover:text-cyan-500"
-                        href="/contact-us"
-                    >
-                        Contact
-                    </Link>
-                    <Link
-                        className="border-b text-xl py-4 border-white hover:text-cyan-500"
-                        href="/about-us"
+                        className="border-b text-xl py-4 border-[#101727] hover:text-[#00B8EE]"
+                        href="/about"
                     >
                         About
+                    </Link>
+                    <Link
+                        className="border-b text-xl py-4 border-[#101727] hover:text-[#00B8EE]"
+                        href="/contact"
+                    >
+                        Contact
                     </Link>
                 </div>
             ) : (

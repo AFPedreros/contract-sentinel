@@ -5,7 +5,7 @@ import BuildspaceLogo from "../components/BuildspaceLogo";
 
 const Home = () => {
     return (
-        <div>
+        <div className="text-white">
             <Head>
                 <title>Contract Sentinel</title>
             </Head>
@@ -22,11 +22,11 @@ const Home = () => {
                 </div>
 
                 <Link
-                    className="bg-black text-md rounded-2xl w-fit m-auto mt-10 px-10 py-4 text-white
-                    font-semibold tracking-wide md:text-xl"
-                    href="/audit-contract"
+                    className="bg-[#00B8EE] text-md rounded-full w-fit m-auto mt-10 px-10 py-4 text-white
+                    font-semibold tracking-wide md:text-xl hover:bg-[#017295]"
+                    href="/sentinel"
                 >
-                    Audit Smart Contract
+                    Audit an smart contract
                 </Link>
             </div>
             <BuildspaceLogo />
