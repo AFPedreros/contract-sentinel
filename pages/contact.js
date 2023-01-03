@@ -13,13 +13,13 @@ const Contact = () => {
                 <title>Contract Sentinel</title>
             </Head>
             <Header />
-            <div className="mt-10 mx-auto md:mt-16 text-center">
+            <div className="mt-10 px-6 md:px-0 mx-auto md:mt-16 text-center">
                 <h1 className="text-2xl font-semibold mb-2   ">
                     Contact with us or give us some feedback
                 </h1>
                 <form
                     onSubmit={handleOnSubmit}
-                    className="w-1/3 mt-10 flex flex-col gap-6 text-left mx-auto"
+                    className="md:w-1/3 w-full mt-10 flex flex-col gap-6 text-left mx-auto"
                     method="post"
                 >
                     <div className="flex flex-col gap-2">

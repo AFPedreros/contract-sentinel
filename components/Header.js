@@ -48,23 +48,30 @@ const Header = () => {
                     <FontAwesomeIcon icon={faBars} size="xl" />
                 )}
             </button>
+
             {toggle ? (
-                <div className="md:hidden text-center absolute flex flex-col top-20 right-0 h-screen w-full bg-white">
+                <div
+                    className="md:hidden text-center absolute flex flex-col top-0 mt-16 right-0
+                h-screen w-full bg-[#101727]"
+                >
                     <Link
                         className="border-b text-xl py-4 border-[#101727] hover:text-[#00B8EE]"
                         href="/sentinel"
+                        onClick={toggleMenu}
                     >
                         The Sentinel
                     </Link>
                     <Link
                         className="border-b text-xl py-4 border-[#101727] hover:text-[#00B8EE]"
                         href="/about"
+                        onClick={toggleMenu}
                     >
                         About
                     </Link>
                     <Link
                         className="border-b text-xl py-4 border-[#101727] hover:text-[#00B8EE]"
                         href="/contact"
+                        onClick={toggleMenu}
                     >
                         Contact
                     </Link>
