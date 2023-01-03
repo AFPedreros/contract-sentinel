@@ -8,6 +8,8 @@ const Header = () => {
 
     const toggleMenu = () => {
         setToggle((prev) => !prev);
+        const overflow = toggle ? "visible" : "hidden";
+        document.body.style.overflow = overflow;
     };
 
     return (
@@ -26,13 +28,13 @@ const Header = () => {
                 >
                     The Sentinel
                 </Link>
-                <Link
+                {/* <Link
                     className="border-b border-[#101727] hover:text-[#00B8EE] hover:border-solid
                     hover:border-b hover:border-[#00B8EE]"
                     href="/about"
                 >
                     About
-                </Link>
+                </Link> */}
                 <Link
                     className="border-b border-[#101727] hover:text-[#00B8EE] hover:border-solid
                     hover:border-b hover:border-[#00B8EE]"
@@ -61,13 +63,13 @@ const Header = () => {
                     >
                         The Sentinel
                     </Link>
-                    <Link
+                    {/* <Link
                         className="border-b text-xl py-4 border-[#101727] hover:text-[#00B8EE]"
                         href="/about"
                         onClick={toggleMenu}
                     >
                         About
-                    </Link>
+                    </Link> */}
                     <Link
                         className="border-b text-xl py-4 border-[#101727] hover:text-[#00B8EE]"
                         href="/contact"

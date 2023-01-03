@@ -1,10 +1,41 @@
+import { useState } from "react";
 import Head from "next/head";
 import Header from "../components/Header";
 import BuildspaceLogo from "../components/BuildspaceLogo";
 const Contact = () => {
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
+
+    const sendEmail = () => {
+        window.open("mailto:felipe.pedreros94@gmail.com");
+    };
+
+    const handleChange = (e) => {
+        const { value, name } = e.target;
+        setForm((prevState) => {
+            return {
+                ...prevState,
+                [name]: value,
+            };
+        });
+    };
+
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        console.log("Clicked");
+
+        fetch("api/form", {
+            method: "POST",
+            body: JSON.stringify(form),
+        });
+
+        setForm({
+            name: "",
+            email: "",
+            message: "",
+        });
     };
 
     return (
@@ -15,9 +46,15 @@ const Contact = () => {
             <Header />
             <div className="mt-10 px-6 md:px-0 mx-auto md:mt-16 text-center">
                 <h1 className="text-2xl font-semibold mb-2   ">
-                    Contact with us or give us some feedback
+                    Chat with us or give us some feedback
                 </h1>
-                <form
+                <p
+                    className="cursor-pointer mt-10 border-b w-fit mx-auto"
+                    onClick={sendEmail}
+                >
+                    Send us an email
+                </p>
+                {/* <form
                     onSubmit={handleOnSubmit}
                     className="md:w-1/3 w-full mt-10 flex flex-col gap-6 text-left mx-auto"
                     method="post"
@@ -27,6 +64,8 @@ const Contact = () => {
                         <input
                             type="text"
                             name="name"
+                            value={form.name || ""}
+                            onChange={handleChange}
                             className="w-full rounded p-4 h-10 focus:border focus:outline-none
                         focus:border-[#00B8EE] bg-[#232938]"
                         />
@@ -36,6 +75,8 @@ const Contact = () => {
                         <input
                             type="email"
                             name="email"
+                            value={form.email || ""}
+                            onChange={handleChange}
                             className="w-full rounded p-4 h-10 focus:border focus:outline-none
                         focus:border-[#00B8EE] bg-[#232938]"
                         />
@@ -45,6 +86,9 @@ const Contact = () => {
                         <textarea
                             required={true}
                             placeholder="Message"
+                            name="message"
+                            value={form.message || ""}
+                            onChange={handleChange}
                             className="w-full rounded p-4 h-32 focus:border focus:outline-none
                         focus:border-[#00B8EE] resize-none bg-[#232938]"
                         />
@@ -55,7 +99,7 @@ const Contact = () => {
                     >
                         Submit
                     </button>
-                </form>
+                </form> */}
             </div>
             <BuildspaceLogo />
         </div>
