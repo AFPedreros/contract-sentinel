@@ -73,7 +73,7 @@ const Audit = () => {
                 <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded shadow-md">
                     <textarea
                         placeholder="Paste your Smart Contract"
-                        className="w-full text-[#575c66] rounded p-4 h-[28rem] resize-none bg-[#282c34]"
+                        className="w-full text-white rounded p-4 h-[28rem] resize-none bg-[#282c34]"
                         value={userInput}
                         onChange={onUserChangedText}
                     />
@@ -92,14 +92,14 @@ const Audit = () => {
                         </a>
                     </div>
                 </div>
-            </div>
-            {apiOutput && (
-                <div className="mt-10 mb-20 mx-auto w-2/3 h-fit p-6 rounded bg-[#232938]">
-                    <h3 className="text-xl font-semibold mb-6">Output</h3>
+                {apiOutput && (
+                    <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded shadow-md mt-10">
+                        <h3 className="text-xl font-semibold mb-6">Output</h3>
 
-                    {apiOutput}
-                </div>
-            )}
+                        {apiOutput}
+                    </div>
+                )}
+            </div>
             <BuildspaceLogo />
         </div>
     );
