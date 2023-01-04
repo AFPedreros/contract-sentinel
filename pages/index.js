@@ -27,7 +27,7 @@ const Home = () => {
                     font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md"
                         href="/sentinel"
                     >
-                        Audit an smart contract
+                        Audit your contract
                     </Link>
                 </div>
             </div>
