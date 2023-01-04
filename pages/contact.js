@@ -50,7 +50,7 @@ const Contact = () => {
                     Chat with us or give us some feedback
                 </h1>
                 <p
-                    className="cursor-pointer my-6 border-b w-fit mx-auto"
+                    className="cursor-pointer my-6 border-b border-[#3c3c57] w-fit mx-auto"
                     onClick={sendEmail}
                 >
                     Send us an email

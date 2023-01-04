@@ -17,27 +17,21 @@ const Header = () => {
             className="w-full px-6 py-6 flex justify-between mx-auto
         z-20 items-center md:py-6 md:px-52"
         >
-            <Link className="text-xl md:text-2xl hover:text-cyan-500" href="/">
+            <Link className="text-xl font-bold" href="/">
                 Contract Sentinel
             </Link>
             <div className="hidden md:gap-10 md:flex">
                 <Link
-                    className="border-b border-transparent hover:text-[#00B8EE] hover:border-solid
-                    hover:border-b hover:border-[#00B8EE]"
+                    className="font-bold hover:text-[#4f5fe4]"
                     href="/sentinel"
                 >
                     The Sentinel
                 </Link>
-                <Link
-                    className="border-b border-transparent hover:text-[#00B8EE] hover:border-solid
-                    hover:border-b hover:border-[#00B8EE]"
-                    href="/about"
-                >
+                <Link className="font-bold hover:text-[#4f5fe4]" href="/about">
                     About
                 </Link>
                 <Link
-                    className="border-b border-transparent hover:text-[#00B8EE] hover:border-solid
-                    hover:border-b hover:border-[#00B8EE]"
+                    className="font-bold hover:text-[#4f5fe4]"
                     href="/contact"
                 >
                     Contact
@@ -57,21 +51,21 @@ const Header = () => {
                 h-screen w-full bg-[#fff]"
                 >
                     <Link
-                        className="border-b text-xl py-4 border-transparent hover:text-[#00B8EE]"
+                        className="font-bold text-xl py-4 hover:text-[#4f5fe4]"
                         href="/sentinel"
                         onClick={toggleMenu}
                     >
                         The Sentinel
                     </Link>
                     <Link
-                        className="border-b text-xl py-4 border-transparent hover:text-[#00B8EE]"
+                        className="font-bold text-xl py-4 hover:text-[#4f5fe4]"
                         href="/about"
                         onClick={toggleMenu}
                     >
                         About
                     </Link>
                     <Link
-                        className="border-b text-xl py-4 border-transparent hover:text-[#00B8EE]"
+                        className="font-bold text-xl py-4 hover:text-[#4f5fe4]"
                         href="/contact"
                         onClick={toggleMenu}
                     >
