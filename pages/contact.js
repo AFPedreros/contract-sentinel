@@ -39,17 +39,18 @@ const Contact = () => {
     };
 
     return (
-        <div className="text-white">
+        <div className="text-[#3c3c57]">
             <Head>
                 <title>Contract Sentinel</title>
             </Head>
             <Header />
-            <div className="mt-10 px-6 md:px-0 mx-auto md:mt-16 text-center">
-                <h1 className="text-2xl font-semibold mb-2   ">
+            <div className="h-[30rem] bg-slate-100 px-6 text-center w-full"></div>
+            <div className="my-20 px-6 md:px-0 mx-auto text-center">
+                <h1 className="text-2xl font-semibold   ">
                     Chat with us or give us some feedback
                 </h1>
                 <p
-                    className="cursor-pointer mt-10 border-b w-fit mx-auto"
+                    className="cursor-pointer my-6 border-b w-fit mx-auto"
                     onClick={sendEmail}
                 >
                     Send us an email

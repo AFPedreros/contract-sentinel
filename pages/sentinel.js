@@ -53,30 +53,33 @@ const Audit = () => {
     };
 
     return (
-        <div className="text-white">
+        <div className="text-[#3c3c57]">
             <Head>
                 <title>Contract Sentinel</title>
             </Head>
             <Header />
-            <div className="text-white">
-                <div className="mb-10 bg-[#232938] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded">
-                    <h1 className="text-xl font-semibold mb-2   ">
-                        Audit your smart contract
+            <div className="h-[30rem] bg-slate-100 px-6 text-center w-full flex items-center">
+                <div className="flex flex-col w-full items-center justify-center md:w-1/2 mx-auto">
+                    <h1 className="text-4xl font-bold md:text-5xl">
+                        Test the security of your Smart Contract
                     </h1>
-                    <p className="pb-4 mb-8 border-b border-white">
+                    <p className="text-lg mt-10 md:text-xl">
                         Add your smart contract in the app for testing possible
                         vulnerabilities
                     </p>
+                </div>
+            </div>
+            <div className="text-[#575c66] py-20 bg-[#f2f4f7]">
+                <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded shadow-md">
                     <textarea
                         placeholder="Paste your Smart Contract"
-                        className="w-full rounded p-4 h-[28rem] focus:border focus:outline-none
-                        focus:border-[#00B8EE] resize-none bg-[#101727]"
+                        className="w-full text-[#575c66] rounded p-4 h-[28rem] resize-none bg-[#282c34]"
                         value={userInput}
                         onChange={onUserChangedText}
                     />
                     <div
-                        className="bg-[#00B8EE] text-md rounded-full w-fit mt-6 px-6 py-2 text-white
-                    font-regular tracking-wide cursor-pointer hover:bg-[#017295]"
+                        className="bg-[#4f5fe4] uppercase text-sm rounded-lg w-fit mt-4 px-10 py-4 text-white
+                        font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md"
                     >
                         <a onClick={callGenerateEndpoint}>
                             <div className="generate">
