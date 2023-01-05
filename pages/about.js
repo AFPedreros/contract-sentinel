@@ -8,7 +8,13 @@ const About = () => {
                 <title>Contract Sentinel</title>
             </Head>
             <Header />
-            <div className="h-[30rem] bg-slate-100 px-6 text-center w-full"></div>
+            <div className="h-[30rem] bg-slate-100 px-6 text-center w-full flex items-center">
+                <div className="flex flex-col w-full items-center justify-center md:w-1/2 mx-auto">
+                    <h1 className="text-4xl font-bold  md:text-5xl">
+                        We empower teams through AI smart contract auditing.
+                    </h1>
+                </div>
+            </div>
             <div className="w-1/2 mx-auto my-20">
                 <h1 className="text-2xl font-semibold mb-0">Our mission</h1>
                 <p className="my-6 w-fit mx-auto">
@@ -23,7 +29,7 @@ const About = () => {
                     audits. By providing a simple and efficient solution for
                     auditing smart contracts, we hope to empower teams to
                     confidently use this powerful technology and continue
-                    pushing the boundaries of what is possible.l
+                    pushing the boundaries of what is possible.
                 </p>
             </div>
             <BuildspaceLogo />

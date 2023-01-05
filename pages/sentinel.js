@@ -61,7 +61,7 @@ const Audit = () => {
             <div className="h-[30rem] bg-[#282846] text-white px-6 text-center w-full flex items-center">
                 <div className="flex flex-col w-full items-center justify-center md:w-1/2 mx-auto">
                     <h1 className="text-4xl font-bold md:text-5xl">
-                        Test the security of your Smart Contract
+                        Test the security of your smart contracts.
                     </h1>
                     <p className="text-lg mt-10 md:text-xl">
                         Add your smart contract in the app for testing possible

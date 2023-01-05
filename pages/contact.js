@@ -44,7 +44,13 @@ const Contact = () => {
                 <title>Contract Sentinel</title>
             </Head>
             <Header />
-            <div className="h-[30rem] bg-slate-100 px-6 text-center w-full"></div>
+            <div className="h-[30rem] bg-slate-100 px-6 text-center w-full flex items-center">
+                <div className="flex flex-col w-full items-center justify-center md:w-1/2 mx-auto">
+                    <h1 className="text-4xl font-bold  md:text-5xl">
+                        Help us in our mission to secure the future of web3!
+                    </h1>
+                </div>
+            </div>
             <div className="my-20 px-6 md:px-0 mx-auto text-center">
                 <h1 className="text-2xl font-semibold   ">
                     Chat with us or give us some feedback
