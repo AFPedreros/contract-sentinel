@@ -56,14 +56,15 @@ const Contact = () => {
                     Chat with us or give us some feedback
                 </h1>
                 <p
-                    className="cursor-pointer my-6 border-b border-[#3c3c57] w-fit mx-auto"
+                    className="mx-auto cursor-pointer bg-[#4f5fe4] uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
+                    font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md"
                     onClick={sendEmail}
                 >
                     Send us an email
                 </p>
                 {/* <form
                     onSubmit={handleOnSubmit}
-                    className="md:w-1/3 w-full mt-10 flex flex-col gap-6 text-left mx-auto"
+                    className="md:w-2/5 w-full mt-10 flex flex-col p-8 gap-6 text-left mx-auto bg-slate-100 shadow-md"
                     method="post"
                 >
                     <div className="flex flex-col gap-2">
@@ -73,8 +74,7 @@ const Contact = () => {
                             name="name"
                             value={form.name || ""}
                             onChange={handleChange}
-                            className="w-full rounded p-4 h-10 focus:border focus:outline-none
-                        focus:border-[#00B8EE] bg-[#232938]"
+                            className="w-full rounded p-4 h-10 bg-white"
                         />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -84,8 +84,7 @@ const Contact = () => {
                             name="email"
                             value={form.email || ""}
                             onChange={handleChange}
-                            className="w-full rounded p-4 h-10 focus:border focus:outline-none
-                        focus:border-[#00B8EE] bg-[#232938]"
+                            className="w-full rounded p-4 h-10 bg-white"
                         />
                     </div>
                     <div className="flex flex-col gap-2">
@@ -96,13 +95,12 @@ const Contact = () => {
                             name="message"
                             value={form.message || ""}
                             onChange={handleChange}
-                            className="w-full rounded p-4 h-32 focus:border focus:outline-none
-                        focus:border-[#00B8EE] resize-none bg-[#232938]"
+                            className="w-full rounded p-4 h-32 resize-none bg-white"
                         />
                     </div>
                     <button
-                        className="bg-[#00B8EE] text-md rounded-full w-fit px-6 py-2 text-white
-                    font-regular tracking-wide cursor-pointer hover:bg-[#017295]"
+                        className="cursor-pointer bg-[#4f5fe4] uppercase text-sm rounded-lg w-full px-10 py-3 text-white
+                        font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md"
                     >
                         Submit
                     </button>

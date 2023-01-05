@@ -78,7 +78,7 @@ const Audit = () => {
                         onChange={onUserChangedText}
                     />
                     <div
-                        className="bg-[#4f5fe4] uppercase text-sm rounded-lg w-fit mt-4 px-10 py-4 text-white
+                        className="cursor-pointer bg-[#4f5fe4] uppercase text-sm rounded-lg w-fit mt-4 px-10 py-4 text-white
                         font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md"
                     >
                         <a onClick={callGenerateEndpoint}>
