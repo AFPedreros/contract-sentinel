@@ -5,8 +5,11 @@ import { useState } from "react";
 
 const Audit = () => {
     const [userInput, setUserInput] = useState("");
+    const [vulnerabilityOutput, setVulnerabilityOutput] = useState("");
+
     const [vulnerabilities, setVulnerabilities] = useState("");
     const [recommendations, setRecommendations] = useState("");
+
     const [isGenerating, setIsGenerating] = useState(false);
     const [isSmartContract, setIsSmartContract] = useState(false);
 
@@ -15,7 +18,7 @@ const Audit = () => {
         setIsGenerating(true);
 
         console.log("Calling OpenAI...");
-        const response = await fetch("/api/generate", {
+        const response = await fetch("/api/generateVulnerabilities", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -25,7 +28,10 @@ const Audit = () => {
 
         const data = await response.json();
         const { output } = data;
+
         setIsSmartContract(output.text.toLowerCase().includes("vulnerability"));
+        setVulnerabilityOutput(output.text);
+
         const linesArray = format(output.text);
         const vulnerabilities = linesArray.filter((x) => x !== "" && x !== " ");
         const vulElement = vulnerabilities.map((vul, index) => {
@@ -37,12 +43,39 @@ const Audit = () => {
         });
 
         setVulnerabilities(vulElement);
-        // setRecommendations(output);
         setIsGenerating(false);
     };
 
-    const callCheckRecommendations = () => {
-        setRecommendations("output");
+    const callCheckRecommendations = async () => {
+        setIsGenerating(true);
+        const input = `${userInput}
+        ${vulnerabilityOutput}
+        `;
+
+        console.log("Calling OpenAI...");
+        const response = await fetch("/api/generateRecommendations", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ input }),
+        });
+
+        const data = await response.json();
+        const { output } = data;
+
+        const linesArray = format(output.text);
+        const recommendations = linesArray.filter((x) => x !== "" && x !== " ");
+        const recElement = recommendations.map((rec, index) => {
+            return (
+                <p key={index} className="mt-4">
+                    {rec}
+                </p>
+            );
+        });
+
+        setRecommendations(recElement);
+        setIsGenerating(false);
     };
 
     const onUserChangedText = (event) => {
@@ -96,7 +129,7 @@ const Audit = () => {
                     >
                         {isGenerating ? "Generating..." : "Generate"}
                     </button>
-                    {/* {isSmartContract && (
+                    {isSmartContract && (
                         <button
                             className={`${
                                 isGenerating
@@ -111,7 +144,7 @@ const Audit = () => {
                                 ? "Generating..."
                                 : "Code suggestions"}
                         </button>
-                    )} */}
+                    )}
                 </div>
                 {vulnerabilities && (
                     <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded shadow-md mt-10">
