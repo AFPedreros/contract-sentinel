@@ -5,10 +5,13 @@ import { useState } from "react";
 
 const Audit = () => {
     const [userInput, setUserInput] = useState("");
-    const [apiOutput, setApiOutput] = useState();
+    const [vulnerabilities, setVulnerabilities] = useState("");
+    const [recommendations, setRecommendations] = useState("");
     const [isGenerating, setIsGenerating] = useState(false);
+    const [isSmartContract, setIsSmartContract] = useState(false);
 
-    const callGenerateEndpoint = async () => {
+    const callCheckVulnerabilities = async () => {
+        setRecommendations("");
         setIsGenerating(true);
 
         console.log("Calling OpenAI...");
@@ -22,7 +25,8 @@ const Audit = () => {
 
         const data = await response.json();
         const { output } = data;
-        const linesArray = parseVulnerabilities(output.text);
+        setIsSmartContract(output.text.toLowerCase().includes("vulnerability"));
+        const linesArray = format(output.text);
         const vulnerabilities = linesArray.filter((x) => x !== "" && x !== " ");
         const vulElement = vulnerabilities.map((vul, index) => {
             return (
@@ -31,25 +35,28 @@ const Audit = () => {
                 </p>
             );
         });
-        console.log(vulnerabilities);
-        console.log(vulElement);
 
-        setApiOutput(vulElement);
+        setVulnerabilities(vulElement);
+        // setRecommendations(output);
         setIsGenerating(false);
+    };
+
+    const callCheckRecommendations = () => {
+        setRecommendations("output");
     };
 
     const onUserChangedText = (event) => {
         setUserInput(event.target.value);
     };
 
-    const parseVulnerabilities = (vulnerabilityString) => {
-        const vulnerabilities = [];
+    const format = (formatString) => {
+        const array = [];
 
-        vulnerabilityString.split("\n").forEach((line) => {
-            vulnerabilities.push(line);
+        formatString.split("\n").forEach((line) => {
+            array.push(line);
         });
 
-        return vulnerabilities;
+        return array;
     };
 
     return (
@@ -77,26 +84,51 @@ const Audit = () => {
                         value={userInput}
                         onChange={onUserChangedText}
                     />
-                    <div
-                        className="cursor-pointer bg-[#4f5fe4] uppercase text-sm rounded-lg w-fit mt-4 px-10 py-4 text-white
-                        font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md"
+                    <button
+                        className={`${
+                            isGenerating
+                                ? "bg-[#3645ca]"
+                                : "bg-[#4f5fe4] cursor-pointer"
+                        } uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
+                         font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md`}
+                        onClick={callCheckVulnerabilities}
+                        disabled={isGenerating}
                     >
-                        <a onClick={callGenerateEndpoint}>
-                            <div className="generate">
-                                {isGenerating ? (
-                                    <span>Generating...</span>
-                                ) : (
-                                    <p>Generate</p>
-                                )}
-                            </div>
-                        </a>
-                    </div>
+                        {isGenerating ? "Generating..." : "Generate"}
+                    </button>
+                    {/* {isSmartContract && (
+                        <button
+                            className={`${
+                                isGenerating
+                                    ? "bg-[#3645ca]"
+                                    : "bg-[#4f5fe4] cursor-pointer"
+                            } uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
+                         font-semibold tracking-wide md:ml-4 md:text-ml hover:bg-[#3645ca] shadow-md`}
+                            onClick={callCheckRecommendations}
+                            disabled={isGenerating}
+                        >
+                            {isGenerating
+                                ? "Generating..."
+                                : "Code suggestions"}
+                        </button>
+                    )} */}
                 </div>
-                {apiOutput && (
+                {vulnerabilities && (
                     <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded shadow-md mt-10">
-                        <h3 className="text-xl font-semibold mb-6">Output</h3>
+                        <h3 className="text-xl font-semibold mb-6">
+                            Possible vulnerabilities
+                        </h3>
 
-                        {apiOutput}
+                        {vulnerabilities}
+                    </div>
+                )}
+                {recommendations && (
+                    <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded shadow-md mt-10">
+                        <h3 className="text-xl font-semibold mb-6">
+                            Recommendations
+                        </h3>
+
+                        {recommendations}
                     </div>
                 )}
             </div>
