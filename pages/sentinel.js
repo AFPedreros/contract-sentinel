@@ -120,10 +120,10 @@ const Audit = () => {
                     <button
                         className={`${
                             isGenerating
-                                ? "bg-[#3645ca]"
+                                ? "bg-[#4351C5]"
                                 : "bg-[#4f5fe4] cursor-pointer"
                         } uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
-                         font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md`}
+                         font-semibold tracking-wide md:text-ml hover:bg-[#4351C5] shadow-md`}
                         onClick={callCheckVulnerabilities}
                         disabled={isGenerating}
                     >
@@ -133,10 +133,10 @@ const Audit = () => {
                         <button
                             className={`${
                                 isGenerating
-                                    ? "bg-[#3645ca]"
+                                    ? "bg-[#4351C5]"
                                     : "bg-[#4f5fe4] cursor-pointer"
                             } uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
-                         font-semibold tracking-wide md:ml-4 md:text-ml hover:bg-[#3645ca] shadow-md`}
+                         font-semibold tracking-wide md:ml-4 md:text-ml hover:bg-[#4351C5] shadow-md`}
                             onClick={callCheckRecommendations}
                             disabled={isGenerating}
                         >

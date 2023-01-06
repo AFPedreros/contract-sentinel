@@ -57,7 +57,7 @@ const Contact = () => {
                 </h1>
                 <p
                     className="mx-auto cursor-pointer bg-[#4f5fe4] uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
-                    font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md"
+                    font-semibold tracking-wide md:text-ml hover:bg-[#4351C5] shadow-md"
                     onClick={sendEmail}
                 >
                     Send us an email
