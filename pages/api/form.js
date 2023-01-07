@@ -1,27 +1,27 @@
-const sgMail = require("@sendgrid/mail");
+import { transporter, mailOptions } from "../../components/config/nodemailer";
 
-const { SENDGRID_API_KEY, FROM_EMAIL, TO_EMAIL } = process.env;
-
-sgMail.setApiKey(SENDGRID_API_KEY);
-
-const form = async (req, res) => {
+export default async function form(req, res) {
+    console.log(req.body);
     const body = JSON.parse(req.body);
     const { name, email, message } = body;
 
-    const msg = {
-        to: TO_EMAIL,
-        from: FROM_EMAIL,
-        subject: "Contract Sentinel form",
-        html: `<p><strong$>Name: </strong${name}></p>
-                <p><strong$>Email: </strong${email}></p>
-                <p><strong$>Message: </strong${message}></p>
-            `,
-    };
+    const textData = `${name} ${email} ${email}`;
+    const htmlData = `
+        <h3>${name}</h3>
+        <h3>${email}</h3>
+        <p>${message}</p>
+        `;
 
-    await sgMail.send(msg);
-    console.log(msg);
+    try {
+        await transporter.sendMail({
+            ...mailOptions,
+            subject: "Contract Sentinel form",
+            text: textData,
+            html: htmlData,
+        });
+    } catch (error) {
+        console.log(error);
+    }
 
     res.json({ success: true });
-};
-
-export default form;
+}

@@ -5,7 +5,8 @@ const configuration = new Configuration({
 });
 
 const openai = new OpenAIApi(configuration);
-const generateAction = async (req, res) => {
+
+export default async function generateAction(req, res) {
     // Run first prompt
 
     const basePromptPrefix = `Check if this is a Ethereum solidity smart contract with his constructor:
@@ -45,6 +46,4 @@ const generateAction = async (req, res) => {
     res.status(200).json({
         output: basePromptOutput,
     });
-};
-
-export default generateAction;
+}

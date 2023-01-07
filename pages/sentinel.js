@@ -68,7 +68,7 @@ const Audit = () => {
         const recommendations = linesArray.filter((x) => x !== "" && x !== " ");
         const recElement = recommendations.map((rec, index) => {
             return (
-                <p key={index} className="mt-4">
+                <p key={index} className="mt-2">
                     {rec}
                 </p>
             );
@@ -91,6 +91,11 @@ const Audit = () => {
 
         return array;
     };
+
+    function formatCode(formatString) {
+        const array = formatString.split("Code Example:");
+        console.log(array);
+    }
 
     return (
         <div className="text-[#3c3c57]">
@@ -127,7 +132,33 @@ const Audit = () => {
                         onClick={callCheckVulnerabilities}
                         disabled={isGenerating}
                     >
-                        {isGenerating ? "Generating..." : "Generate"}
+                        {isGenerating ? (
+                            <div className="flex">
+                                <svg
+                                    class="h-5 mr-2 w-5 animate-spin text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        class="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        stroke-width="4"
+                                    ></circle>
+                                    <path
+                                        class="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
+                                </svg>
+                                <span>Generating...</span>
+                            </div>
+                        ) : (
+                            "Generate"
+                        )}
                     </button>
                     {isSmartContract && (
                         <button
@@ -140,9 +171,33 @@ const Audit = () => {
                             onClick={callCheckRecommendations}
                             disabled={isGenerating}
                         >
-                            {isGenerating
-                                ? "Generating..."
-                                : "Code suggestions"}
+                            {isGenerating ? (
+                                <div className="flex">
+                                    <svg
+                                        class="h-5 mr-2 w-5 animate-spin text-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            class="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            stroke-width="4"
+                                        ></circle>
+                                        <path
+                                            class="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                        ></path>
+                                    </svg>
+                                    <span>Generating...</span>
+                                </div>
+                            ) : (
+                                "Code suggestions"
+                            )}
                         </button>
                     )}
                 </div>
@@ -160,8 +215,7 @@ const Audit = () => {
                         <h3 className="text-xl font-semibold mb-6">
                             Recommendations
                         </h3>
-
-                        {recommendations}
+                        <code>{recommendations}</code>
                     </div>
                 )}
             </div>

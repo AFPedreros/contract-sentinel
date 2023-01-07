@@ -1,17 +1,18 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+
 import Head from "next/head";
 import Header from "../components/Header";
 import BuildspaceLogo from "../components/BuildspaceLogo";
 const Contact = () => {
+    const [isLoading, setIsLoading] = useState(false);
+
     const [form, setForm] = useState({
         name: "",
         email: "",
         message: "",
     });
-
-    const sendEmail = () => {
-        window.open("mailto:felipe.pedreros94@gmail.com");
-    };
 
     const handleChange = (e) => {
         const { value, name } = e.target;
@@ -26,6 +27,8 @@ const Contact = () => {
     const handleOnSubmit = (e) => {
         e.preventDefault();
 
+        setIsLoading(true);
+
         fetch("api/form", {
             method: "POST",
             body: JSON.stringify(form),
@@ -36,6 +39,7 @@ const Contact = () => {
             email: "",
             message: "",
         });
+        setIsLoading(false);
     };
 
     return (
@@ -53,58 +57,88 @@ const Contact = () => {
             </div>
             <div className="my-20 px-6 md:px-0 mx-auto text-center">
                 <h1 className="text-2xl font-semibold   ">
-                    Chat with us or give us some feedback
+                    Get in touch and give us some feedback
                 </h1>
-                <p
-                    className="mx-auto cursor-pointer bg-[#4f5fe4] uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
-                    font-semibold tracking-wide md:text-ml hover:bg-[#4351C5] shadow-md"
-                    onClick={sendEmail}
-                >
-                    Send us an email
-                </p>
-                {/* <form
+                <form
                     onSubmit={handleOnSubmit}
-                    className="md:w-2/5 w-full mt-10 flex flex-col p-8 gap-6 text-left mx-auto bg-slate-100 shadow-md"
+                    className="md:w-1/3 w-full mt-4 flex flex-col px-8 gap-6 text-left mx-auto"
                     method="post"
                 >
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="name">Name</label>
                         <input
+                            required={true}
+                            placeholder="Enter your full name"
                             type="text"
                             name="name"
                             value={form.name || ""}
                             onChange={handleChange}
-                            className="w-full rounded p-4 h-10 bg-white"
+                            className="w-full rounded px-2 py-4 h-10 bg-slate-100 border border-slate-300
+                            focus:border-slate-500 focus:border outline-none"
                         />
                     </div>
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="email">Email</label>
                         <input
+                            required={true}
+                            placeholder="Enter your email address"
                             type="email"
                             name="email"
                             value={form.email || ""}
                             onChange={handleChange}
-                            className="w-full rounded p-4 h-10 bg-white"
+                            className="w-full rounded px-2 py-4 h-10 bg-slate-100 border border-slate-300
+                            focus:border-slate-500 focus:border outline-none"
                         />
                     </div>
                     <div className="flex flex-col gap-2">
-                        <label htmlFor="name">Message*</label>
                         <textarea
                             required={true}
-                            placeholder="Message"
+                            placeholder="Leave a message"
                             name="message"
                             value={form.message || ""}
                             onChange={handleChange}
-                            className="w-full rounded p-4 h-32 resize-none bg-white"
+                            className="w-full rounded px-2 py-2 h-48 bg-slate-100 border border-slate-300
+                            focus:border-slate-500 focus:border outline-none"
                         />
                     </div>
                     <button
-                        className="cursor-pointer bg-[#4f5fe4] uppercase text-sm rounded-lg w-full px-10 py-3 text-white
+                        className="cursor-pointer mx-auto bg-[#4f5fe4] uppercase text-sm rounded-lg w-fit px-10 py-3 text-white
                         font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md"
                     >
-                        Submit
+                        {isLoading ? (
+                            <div className="flex">
+                                <svg
+                                    class="h-5 mr-2 w-5 animate-spin text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        class="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        stroke-width="4"
+                                    ></circle>
+                                    <path
+                                        class="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                    ></path>
+                                </svg>
+                                <span>Sending...</span>
+                            </div>
+                        ) : (
+                            <div className="flex items-center">
+                                <FontAwesomeIcon
+                                    className="mr-2"
+                                    icon={faPaperPlane}
+                                    size="md"
+                                />
+                                <span>Send</span>
+                            </div>
+                        )}
                     </button>
-                </form> */}
+                </form>
             </div>
             <BuildspaceLogo />
         </div>
