@@ -1,7 +1,9 @@
 import Head from "next/head";
 import Header from "../components/Header";
 import BuildspaceLogo from "../components/BuildspaceLogo";
-const About = () => {
+
+// About page component
+export default function About() {
     return (
         <div className="text-[#3c3c57]">
             <Head>
@@ -15,7 +17,7 @@ const About = () => {
                     </h1>
                 </div>
             </div>
-            <div className="w-1/2 mx-auto my-20">
+            <div className="md:w-1/2 mx-6 md:mx-auto my-20">
                 <h1 className="text-2xl font-semibold mb-0">Our mission</h1>
                 <p className="my-6 w-fit mx-auto">
                     Our mission is to provide fast and easy-to-use AI-powered
@@ -35,6 +37,4 @@ const About = () => {
             <BuildspaceLogo />
         </div>
     );
-};
-
-export default About;
+}

@@ -1,7 +1,7 @@
 import { Analytics } from "@vercel/analytics/react";
 import "./styles.css";
 
-function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }) {
     return (
         <>
             <Component {...pageProps} />
@@ -9,4 +9,3 @@ function App({ Component, pageProps }) {
         </>
     );
 }
-export default App;

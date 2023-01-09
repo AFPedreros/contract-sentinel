@@ -3,14 +3,17 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 
-const Header = () => {
-    const [toggle, setToggle] = useState(false);
+// Header component
+export default function Header() {
+    // Toggle state for mobile menu
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    const toggleMenu = () => {
-        setToggle((prev) => !prev);
-        const overflow = toggle ? "visible" : "hidden";
+    // Function to toggle mobile menu
+    function toggleMobileMenu() {
+        setMobileMenuOpen((prev) => !prev);
+        const overflow = mobileMenuOpen ? "visible" : "hidden";
         document.body.style.overflow = overflow;
-    };
+    }
 
     return (
         <header
@@ -37,15 +40,15 @@ const Header = () => {
                     Contact
                 </Link>
             </div>
-            <button onClick={toggleMenu} className="block md:hidden">
-                {toggle ? (
+            <button onClick={toggleMobileMenu} className="block md:hidden">
+                {mobileMenuOpen ? (
                     <FontAwesomeIcon icon={faX} size="xl" />
                 ) : (
                     <FontAwesomeIcon icon={faBars} size="xl" />
                 )}
             </button>
 
-            {toggle ? (
+            {mobileMenuOpen ? (
                 <div
                     className="md:hidden text-center absolute flex flex-col top-0 mt-16 right-0
                 h-screen w-full bg-[#fff]"
@@ -53,21 +56,21 @@ const Header = () => {
                     <Link
                         className="font-bold text-xl py-4 hover:text-[#4f5fe4]"
                         href="/sentinel"
-                        onClick={toggleMenu}
+                        onClick={toggleMobileMenu}
                     >
                         The Sentinel
                     </Link>
                     <Link
                         className="font-bold text-xl py-4 hover:text-[#4f5fe4]"
                         href="/about"
-                        onClick={toggleMenu}
+                        onClick={toggleMobileMenu}
                     >
                         About
                     </Link>
                     <Link
                         className="font-bold text-xl py-4 hover:text-[#4f5fe4]"
                         href="/contact"
-                        onClick={toggleMenu}
+                        onClick={toggleMobileMenu}
                     >
                         Contact
                     </Link>
@@ -77,6 +80,4 @@ const Header = () => {
             )}
         </header>
     );
-};
-
-export default Header;
+}

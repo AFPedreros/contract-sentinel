@@ -1,10 +1,11 @@
-import { transporter, mailOptions } from "../../components/config/nodemailer";
+import { transporter, mailOptions } from "../../config/nodemailer";
 
+// Function to handle form submission
 export default async function form(req, res) {
-    console.log(req.body);
     const body = JSON.parse(req.body);
     const { name, email, message } = body;
 
+    // Text and HTML versions of the message
     const textData = `${name} ${email} ${email}`;
     const htmlData = `
         <h3>${name}</h3>
@@ -12,6 +13,7 @@ export default async function form(req, res) {
         <p>${message}</p>
         `;
 
+    // Send email using nodemailer
     try {
         await transporter.sendMail({
             ...mailOptions,

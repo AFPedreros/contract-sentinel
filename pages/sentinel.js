@@ -3,7 +3,9 @@ import Header from "../components/Header";
 import BuildspaceLogo from "../components/BuildspaceLogo";
 import { useState } from "react";
 
-const Audit = () => {
+// Audit smart contracts component
+export default function Audit() {
+    // State variables for user input, vulnerability output, vulnerabilities, recommendations, and loading state
     const [userInput, setUserInput] = useState("");
     const [vulnerabilityOutput, setVulnerabilityOutput] = useState("");
 
@@ -13,7 +15,9 @@ const Audit = () => {
     const [isGenerating, setIsGenerating] = useState(false);
     const [isSmartContract, setIsSmartContract] = useState(false);
 
-    const callCheckVulnerabilities = async () => {
+    // Function to call the API to check for vulnerabilities
+    async function checkVulnerabilities() {
+        // Reset recommendations and set loading state
         setRecommendations("");
         setIsGenerating(true);
 
@@ -44,9 +48,10 @@ const Audit = () => {
 
         setVulnerabilities(vulElement);
         setIsGenerating(false);
-    };
+    }
 
-    const callCheckRecommendations = async () => {
+    // Function to call the API to check for recommendations
+    async function checkRecommendations() {
         setIsGenerating(true);
         const input = `${userInput}
         ${vulnerabilityOutput}
@@ -76,25 +81,23 @@ const Audit = () => {
 
         setRecommendations(recElement);
         setIsGenerating(false);
-    };
+    }
 
-    const onUserChangedText = (event) => {
-        setUserInput(event.target.value);
-    };
+    // Function to handle changes to the user input
+    function onUserChangedText(e) {
+        setUserInput(e.target.value);
+    }
 
-    const format = (formatString) => {
+    // Function to format a string into an array of lines
+    function format(formatString) {
         const array = [];
 
+        // Split the string into lines and add each line to the array
         formatString.split("\n").forEach((line) => {
             array.push(line);
         });
 
         return array;
-    };
-
-    function formatCode(formatString) {
-        const array = formatString.split("Code Example:");
-        console.log(array);
     }
 
     return (
@@ -129,7 +132,7 @@ const Audit = () => {
                                 : "bg-[#4f5fe4] cursor-pointer"
                         } uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
                          font-semibold tracking-wide md:text-ml hover:bg-[#4351C5] shadow-md`}
-                        onClick={callCheckVulnerabilities}
+                        onClick={checkVulnerabilities}
                         disabled={isGenerating}
                     >
                         {isGenerating ? (
@@ -168,7 +171,7 @@ const Audit = () => {
                                     : "bg-[#4f5fe4] cursor-pointer"
                             } uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
                          font-semibold tracking-wide md:ml-4 md:text-ml hover:bg-[#4351C5] shadow-md`}
-                            onClick={callCheckRecommendations}
+                            onClick={checkRecommendations}
                             disabled={isGenerating}
                         >
                             {isGenerating ? (
@@ -222,6 +225,4 @@ const Audit = () => {
             <BuildspaceLogo />
         </div>
     );
-};
-
-export default Audit;
+}

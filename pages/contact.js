@@ -5,16 +5,21 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import Head from "next/head";
 import Header from "../components/Header";
 import BuildspaceLogo from "../components/BuildspaceLogo";
-const Contact = () => {
+
+// Contact page component
+// TODO: make the form a component
+export default function Contact() {
     const [isLoading, setIsLoading] = useState(false);
 
+    // State to hold form data
     const [form, setForm] = useState({
         name: "",
         email: "",
         message: "",
     });
 
-    const handleChange = (e) => {
+    // Function to handle input changes in form
+    function handleChange(e) {
         const { value, name } = e.target;
         setForm((prevState) => {
             return {
@@ -22,25 +27,28 @@ const Contact = () => {
                 [name]: value,
             };
         });
-    };
+    }
 
-    const handleOnSubmit = (e) => {
+    // Function to handle form submission
+    function handleOnSubmit(e) {
         e.preventDefault();
 
         setIsLoading(true);
 
+        // Send form data to server
         fetch("api/form", {
             method: "POST",
             body: JSON.stringify(form),
         });
 
+        // Reset form data after submission
         setForm({
             name: "",
             email: "",
             message: "",
         });
         setIsLoading(false);
-    };
+    }
 
     return (
         <div className="text-[#3c3c57]">
@@ -55,13 +63,13 @@ const Contact = () => {
                     </h1>
                 </div>
             </div>
-            <div className="my-20 px-6 md:px-0 mx-auto text-center">
+            <div className="my-20 px-0 mx-6 md:mx-auto text-center">
                 <h1 className="text-2xl font-semibold   ">
                     Get in touch and give us some feedback
                 </h1>
                 <form
                     onSubmit={handleOnSubmit}
-                    className="md:w-1/3 w-full mt-4 flex flex-col px-8 gap-6 text-left mx-auto"
+                    className="md:w-1/3 w-full mt-4 flex flex-col md:px-8 gap-6 text-left mx-auto"
                     method="post"
                 >
                     <div className="flex flex-col gap-2">
@@ -100,11 +108,11 @@ const Contact = () => {
                         />
                     </div>
                     <button
-                        className="cursor-pointer mx-auto bg-[#4f5fe4] uppercase text-sm rounded-lg w-fit px-10 py-3 text-white
+                        className="cursor-pointer mx-auto bg-[#4f5fe4] uppercase text-sm rounded-lg w-full md:w-fit px-10 py-3 text-white
                         font-semibold tracking-wide md:text-ml hover:bg-[#3645ca] shadow-md"
                     >
                         {isLoading ? (
-                            <div className="flex">
+                            <div className="flex justify-center">
                                 <svg
                                     class="h-5 mr-2 w-5 animate-spin text-white"
                                     xmlns="http://www.w3.org/2000/svg"
@@ -128,11 +136,10 @@ const Contact = () => {
                                 <span>Sending...</span>
                             </div>
                         ) : (
-                            <div className="flex items-center">
+                            <div className="flex justify-center items-center">
                                 <FontAwesomeIcon
                                     className="mr-2"
                                     icon={faPaperPlane}
-                                    size="md"
                                 />
                                 <span>Send</span>
                             </div>
@@ -143,6 +150,4 @@ const Contact = () => {
             <BuildspaceLogo />
         </div>
     );
-};
-
-export default Contact;
+}

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import buildspaceLogo from "../assets/buildspace-logo.png";
 
-const BuildspaceLogo = () => {
+export default function BuildspaceLogo() {
     return (
         <div className="badge-container grow">
             <a
@@ -16,6 +16,4 @@ const BuildspaceLogo = () => {
             </a>
         </div>
     );
-};
-
-export default BuildspaceLogo;
+}

@@ -3,7 +3,8 @@ import Link from "next/link";
 import Header from "../components/Header";
 import BuildspaceLogo from "../components/BuildspaceLogo";
 
-const Home = () => {
+// Home component
+export default function Home() {
     return (
         <div className="text-[#3c3c57]">
             <Head>
@@ -34,6 +35,4 @@ const Home = () => {
             <BuildspaceLogo />
         </div>
     );
-};
-
-export default Home;
+}
