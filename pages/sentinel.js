@@ -20,7 +20,7 @@ export default function Audit() {
     const [isSmartContract, setIsSmartContract] = useState(false);
 
     useEffect(() => {
-        ReactGA.initialize("GA_MEASUREMENT_ID");
+        ReactGA.initialize(GA_MEASUREMENT_ID);
     }, []);
 
     // Function to call the API to check for vulnerabilities
