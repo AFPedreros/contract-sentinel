@@ -1,8 +1,11 @@
 import Head from "next/head";
 import Header from "../components/Header";
 import BuildspaceLogo from "../components/BuildspaceLogo";
-import { useState, useEffect } from "react";
-import ReactGA from "react-ga";
+import { useState } from "react";
+
+import mixpanel from "mixpanel-browser";
+
+mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN);
 
 // Audit smart contracts component
 // TODO: break the vulnerabilities and recommendations in separated components
@@ -19,11 +22,7 @@ export default function Audit() {
 
     // Function to call the API to check for vulnerabilities
     async function checkVulnerabilities() {
-        ReactGA.event({
-            category: "Button",
-            action: "Clicked",
-        });
-
+        mixpanel.track("Button Clicked");
         // Reset recommendations and set loading state
         setRecommendations("");
         setIsGenerating(true);
