@@ -4,8 +4,6 @@ import BuildspaceLogo from "../components/BuildspaceLogo";
 import { useState, useEffect } from "react";
 import ReactGA from "react-ga";
 
-const { GA_MEASUREMENT_ID } = process.env;
-
 // Audit smart contracts component
 // TODO: break the vulnerabilities and recommendations in separated components
 export default function Audit() {
@@ -18,10 +16,6 @@ export default function Audit() {
 
     const [isGenerating, setIsGenerating] = useState(false);
     const [isSmartContract, setIsSmartContract] = useState(false);
-
-    useEffect(() => {
-        ReactGA.initialize(GA_MEASUREMENT_ID);
-    }, []);
 
     // Function to call the API to check for vulnerabilities
     async function checkVulnerabilities() {
