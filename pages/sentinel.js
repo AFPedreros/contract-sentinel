@@ -22,7 +22,6 @@ export default function Audit() {
 
     // Function to call the API to check for vulnerabilities
     async function checkVulnerabilities() {
-        mixpanel.track("Button Clicked");
         // Reset recommendations and set loading state
         setRecommendations("");
         setIsGenerating(true);
@@ -54,11 +53,11 @@ export default function Audit() {
 
         setVulnerabilities(vulElement);
         setIsGenerating(false);
+        mixpanel.track("Button Clicked");
     }
 
     // Function to call the API to check for recommendations
     async function checkRecommendations() {
-        mixpanel.track("Check Recommendations Clicked");
         setIsGenerating(true);
         const input = `${userInput}
         ${vulnerabilityOutput}
@@ -88,6 +87,7 @@ export default function Audit() {
 
         setRecommendations(recElement);
         setIsGenerating(false);
+        mixpanel.track("Check Recommendations Clicked");
     }
 
     // Function to handle changes to the user input
