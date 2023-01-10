@@ -58,6 +58,7 @@ export default function Audit() {
 
     // Function to call the API to check for recommendations
     async function checkRecommendations() {
+        mixpanel.track("Check Recommendations Clicked");
         setIsGenerating(true);
         const input = `${userInput}
         ${vulnerabilityOutput}
