@@ -30,7 +30,7 @@ export default async function generateAction(req, res) {
         Identify any vulnerabilities the smart contract may have. Also, provide a brief explanation of each vulnerability if possible. Follow the next template for each vulnerability:
         Vulnerability (number): (name of the vulnerability)
         (explanation of the vulnerability)
-        If the smart contract doesn't have vulnerabilities respond "This contract is secure.".
+        If the smart contract doesn't have vulnerabilities respond "Didn't find any common vulnerability.".
         `;
 
         baseCompletion = await openai.createCompletion({
