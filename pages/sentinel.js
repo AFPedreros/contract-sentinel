@@ -38,20 +38,30 @@ export default function Audit() {
         const data = await response.json();
         const { output } = data;
 
-        setIsSmartContract(output.text.toLowerCase().includes("vulnerability"));
-        setVulnerabilityOutput(output.text);
-
-        const linesArray = format(output.text);
-        const vulnerabilities = linesArray.filter((x) => x !== "" && x !== " ");
-        const vulElement = vulnerabilities.map((vul, index) => {
-            return (
-                <p key={index} className="mt-4">
-                    {vul}
-                </p>
+        if (!output.text.includes("error")) {
+            setIsSmartContract(
+                output.text.toLowerCase().includes("vulnerability")
             );
-        });
+            setVulnerabilityOutput(output.text);
 
-        setVulnerabilities(vulElement);
+            const linesArray = format(output.text);
+            const vulnerabilities = linesArray.filter(
+                (x) => x !== "" && x !== " "
+            );
+            const vulElement = vulnerabilities.map((vul, index) => {
+                return (
+                    <p key={index} className="mt-4">
+                        {vul}
+                    </p>
+                );
+            });
+            setVulnerabilities(vulElement);
+        } else {
+            setVulnerabilities(
+                "We're experiencing exceptionally high demand. Please hang tight as we work on scaling our systems."
+            );
+        }
+
         setIsGenerating(false);
         mixpanel.track("Button Clicked");
     }
@@ -75,17 +85,25 @@ export default function Audit() {
         const data = await response.json();
         const { output } = data;
 
-        const linesArray = format(output.text);
-        const recommendations = linesArray.filter((x) => x !== "" && x !== " ");
-        const recElement = recommendations.map((rec, index) => {
-            return (
-                <p key={index} className="mt-2">
-                    {rec}
-                </p>
+        if (!output.text.includes("error")) {
+            const linesArray = format(output.text);
+            const recommendations = linesArray.filter(
+                (x) => x !== "" && x !== " "
             );
-        });
+            const recElement = recommendations.map((rec, index) => {
+                return (
+                    <p key={index} className="mt-2">
+                        {rec}
+                    </p>
+                );
+            });
 
-        setRecommendations(recElement);
+            setRecommendations(recElement);
+        } else {
+            setRecommendations(
+                "We're experiencing exceptionally high demand. Please hang tight as we work on scaling our systems."
+            );
+        }
         setIsGenerating(false);
         mixpanel.track("Check Recommendations Clicked");
     }
@@ -124,7 +142,10 @@ export default function Audit() {
                     </p>
                 </div>
             </div>
-            <div className="text-[#575c66] py-20 bg-[#f2f4f7]">
+            <div
+                id="sentinel-app"
+                className="text-[#575c66] py-20 bg-[#f2f4f7]"
+            >
                 <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded shadow-md">
                     <textarea
                         placeholder="Paste your Smart Contract"
@@ -135,7 +156,7 @@ export default function Audit() {
                     <button
                         className={`${
                             isGenerating
-                                ? "bg-[#4351C5]"
+                                ? "bg-[#4351C5] cursor-wait"
                                 : "bg-[#4f5fe4] cursor-pointer"
                         } uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
                          font-semibold tracking-wide md:text-ml hover:bg-[#4351C5] shadow-md`}
@@ -174,7 +195,7 @@ export default function Audit() {
                         <button
                             className={`${
                                 isGenerating
-                                    ? "bg-[#4351C5]"
+                                    ? "bg-[#4351C5] cursor-wait"
                                     : "bg-[#4f5fe4] cursor-pointer"
                             } uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
                          font-semibold tracking-wide md:ml-4 md:text-ml hover:bg-[#4351C5] shadow-md`}

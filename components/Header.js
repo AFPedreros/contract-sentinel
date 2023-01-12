@@ -1,10 +1,17 @@
 import Link from "next/link";
-import { useState } from "react";
+import dynamic from "next/dynamic";
+import { useState, Suspense } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 
 // Header component
 export default function Header() {
+    const SocialLoginDynamic = dynamic(
+        () => import("./Auth").then((res) => res.default),
+        {
+            ssr: false,
+        }
+    );
     // Toggle state for mobile menu
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -17,18 +24,19 @@ export default function Header() {
 
     return (
         <header
-            className="w-full px-6 py-6 flex justify-between mx-auto
-        z-20 items-center md:py-6 md:px-52"
+            className="w-full px-6 py-6 flex items-center justify-between my-0 mx-auto
+        z-20 md:h-16 md:px-56"
         >
             <Link className="text-xl font-bold" href="/">
                 Contract Sentinel
             </Link>
-            <div className="hidden md:gap-10 md:flex">
+
+            <div className="hidden items-center  md:gap-10 md:flex">
                 <Link
                     className="font-bold hover:text-[#4f5fe4]"
                     href="/sentinel"
                 >
-                    The Sentinel
+                    Sentinel
                 </Link>
                 <Link className="font-bold hover:text-[#4f5fe4]" href="/about">
                     About
@@ -39,6 +47,9 @@ export default function Header() {
                 >
                     Contact
                 </Link>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <SocialLoginDynamic />
+                </Suspense>
             </div>
             <button onClick={toggleMobileMenu} className="block md:hidden">
                 {mobileMenuOpen ? (
@@ -50,7 +61,7 @@ export default function Header() {
 
             {mobileMenuOpen ? (
                 <div
-                    className="md:hidden text-center absolute flex flex-col top-0 mt-16 right-0
+                    className="md:hidden items-center absolute flex flex-col top-0 mt-16 right-0
                 h-screen w-full bg-[#fff]"
                 >
                     <Link
@@ -58,7 +69,7 @@ export default function Header() {
                         href="/sentinel"
                         onClick={toggleMobileMenu}
                     >
-                        The Sentinel
+                        Sentinel
                     </Link>
                     <Link
                         className="font-bold text-xl py-4 hover:text-[#4f5fe4]"
@@ -74,6 +85,9 @@ export default function Header() {
                     >
                         Contact
                     </Link>
+                    {/* <Suspense fallback={<div>Loading...</div>}>
+                        <SocialLoginDynamic />
+                    </Suspense> */}
                 </div>
             ) : (
                 <></>
