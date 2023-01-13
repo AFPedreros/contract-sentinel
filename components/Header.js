@@ -1,6 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { useState, Suspense } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,6 +12,10 @@ export default function Header() {
             ssr: false,
         }
     );
+
+    useEffect(() => {
+        console.log("re-render");
+    }, []);
     // Toggle state for mobile menu
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -47,9 +51,9 @@ export default function Header() {
                 >
                     Contact
                 </Link>
-                <Suspense fallback={<div>Loading...</div>}>
+                {/* <Suspense fallback={<div>Loading...</div>}>
                     <SocialLoginDynamic />
-                </Suspense>
+                </Suspense> */}
             </div>
             <button onClick={toggleMobileMenu} className="block md:hidden">
                 {mobileMenuOpen ? (
