@@ -2,6 +2,7 @@ import Head from "next/head";
 import Header from "../components/Header";
 import BuildspaceLogo from "../components/BuildspaceLogo";
 import { useState } from "react";
+import Link from "next/link";
 
 import mixpanel from "mixpanel-browser";
 
@@ -126,30 +127,20 @@ export default function Audit() {
     }
 
     return (
-        <div className="text-[#3c3c57]">
-            <Head>
-                <title>Contract Sentinel</title>
-            </Head>
-            <Header />
-            <div className="h-[30rem] bg-[#282846] text-white px-6 text-center w-full flex items-center">
-                <div className="flex flex-col w-full items-center justify-center md:w-1/2 mx-auto">
-                    <h1 className="text-4xl font-bold md:text-5xl">
-                        Test the security of your smart contracts.
-                    </h1>
-                    <p className="text-lg mt-10 md:text-xl">
-                        Add your smart contract in the app for testing possible
-                        vulnerabilities
-                    </p>
-                </div>
-            </div>
-            <div
-                id="sentinel-app"
-                className="text-[#575c66] py-20 bg-[#f2f4f7]"
+        <div className="relative text-[#3c3c57] h-screen md:overflow-hidden">
+            <header
+                className="absolute top-0 left-0 w-full px-6 py-6 flex items-center justify-between my-0 mx-auto
+        z-20 md:h-16 md:px-8 bg-white"
             >
-                <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded shadow-md">
+                <Link className="text-xl font-bold" href="/">
+                    Contract Sentinel
+                </Link>
+            </header>
+            <div className="md:flex text-[#575c66] h-full bg-[#f2f4f7]">
+                <div className="relative bg-[#f9fafb] md:w-1/2 h-full">
                     <textarea
                         placeholder="Paste your Smart Contract"
-                        className="w-full text-white rounded p-4 h-[28rem] resize-none bg-[#282c34]"
+                        className="w-full text-white pt-20 pb-14 px-4 resize-none h-full bg-[#282c34]"
                         value={userInput}
                         onChange={onUserChangedText}
                     />
@@ -158,8 +149,8 @@ export default function Audit() {
                             isGenerating
                                 ? "bg-[#4351C5] cursor-wait"
                                 : "bg-[#4f5fe4] cursor-pointer"
-                        } uppercase text-sm rounded-lg w-fit mt-4 px-10 py-3 text-white
-                         font-semibold tracking-wide md:text-ml hover:bg-[#4351C5] shadow-md`}
+                        } absolute bottom-0 left-0 uppercase text-sm rounded-t-lg w-full px-4 py-4 
+                        text-white text-start font-semibold tracking-wide md:text-ml hover:bg-[#4351C5]`}
                         onClick={checkVulnerabilities}
                         disabled={isGenerating}
                     >
@@ -191,7 +182,7 @@ export default function Audit() {
                             "Generate"
                         )}
                     </button>
-                    {isSmartContract && (
+                    {/* {isSmartContract && (
                         <button
                             className={`${
                                 isGenerating
@@ -230,27 +221,27 @@ export default function Audit() {
                                 "Code suggestions"
                             )}
                         </button>
-                    )}
+                    )} */}
                 </div>
                 {vulnerabilities && (
-                    <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded shadow-md mt-10">
-                        <h3 className="text-xl font-semibold mb-6">
+                    <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-1/2 h-1/3 p-8 overflow-y-scroll">
+                        <h3 className="text-xl font-semibold">
                             Possible vulnerabilities
                         </h3>
 
                         {vulnerabilities}
                     </div>
                 )}
-                {recommendations && (
+                {/* {recommendations && (
                     <div className="bg-[#f9fafb] mx-6 md:mx-auto md:w-2/3 h-fit p-8 rounded shadow-md mt-10">
                         <h3 className="text-xl font-semibold mb-6">
                             Recommendations
                         </h3>
                         <code>{recommendations}</code>
                     </div>
-                )}
+                )} */}
             </div>
-            <BuildspaceLogo />
+            {/* <BuildspaceLogo /> */}
         </div>
     );
 }

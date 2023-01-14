@@ -27,7 +27,7 @@ export default function Home() {
                     <Link
                         className="bg-[#4f5fe4] uppercase text-sm rounded-lg w-fit m-auto mt-10 px-10 py-4 text-white
                     font-semibold tracking-wide md:text-ml hover:bg-[#4351C5] shadow-md"
-                        href="/sentinel#sentinel-app"
+                        href="/sentinel"
                     >
                         Audit your contract
                     </Link>
