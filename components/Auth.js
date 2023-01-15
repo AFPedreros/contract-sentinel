@@ -93,17 +93,26 @@ export default function Auth() {
                     Login
                 </button>
             )}
-            {/* {loading && <p>Loading account details...</p>} */}
+            {loading && (
+                <p className="font-bold ">Loading account details...</p>
+            )}
             {smartAccount && (
                 <div className="flex items-center gap-2 py-4 md:py-0">
-                    {/* <h3>Smart account address:</h3> */}
-                    <CopyToClipboard text={smartAccount.address}>
-                        <p className="cursor-pointer font-bold text-xl md:text-base md:text-normal">
-                            {smartAccount.address.substr(0, 6)}...
-                            {smartAccount.address.substr(
-                                smartAccount.address.length - 4
-                            )}
-                        </p>
+                    <CopyToClipboard
+                        className="flex gap-2"
+                        text={smartAccount.address}
+                    >
+                        <div>
+                            <h3 className="cursor-pointer font-bold text-xl md:text-base md:text-normal">
+                                Smart account address:
+                            </h3>
+                            <p className="cursor-pointer font-bold text-xl md:text-base md:text-normal">
+                                {smartAccount.address.substr(0, 6)}...
+                                {smartAccount.address.substr(
+                                    smartAccount.address.length - 4
+                                )}
+                            </p>
+                        </div>
                     </CopyToClipboard>
                     <button
                         className={`${
