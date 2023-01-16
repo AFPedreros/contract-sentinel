@@ -13,13 +13,13 @@ export default function Home() {
             </Head>
             <Header />
             <div className="h-[30rem] bg-slate-100 px-6 text-center w-full flex items-center">
-                <div className="flex flex-col w-full items-center justify-center md:w-1/2 mx-auto">
+                <div className="flex flex-col items-center justify-center w-full mx-auto md:w-1/2">
                     <div className="text-4xl font-bold md:text-5xl">
                         <h1>Audit your smart contracts easy, fast and free.</h1>
                     </div>
-                    <div className="text-lg mt-10 md:text-xl">
+                    <div className="mt-10 text-lg md:text-xl">
                         <h2>
-                            Find errors an vulnerabilities in smart contracts
+                            Find errors and vulnerabilities in smart contracts
                             using this AI-powered tool.
                         </h2>
                     </div>
