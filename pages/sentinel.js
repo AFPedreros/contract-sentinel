@@ -181,7 +181,7 @@ export default function Audit() {
                                 {isGenerating ? (
                                     <div className="flex">
                                         <svg
-                                            className="h-5 mr-2 w-5 animate-spin text-white"
+                                            className="w-5 h-5 mr-2 text-white animate-spin"
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="none"
                                             viewBox="0 0 24 24"
@@ -219,7 +219,7 @@ export default function Audit() {
                                 {isGenerating ? (
                                     <div className="flex">
                                         <svg
-                                            className="h-5 mr-2 w-5 animate-spin text-white"
+                                            className="w-5 h-5 mr-2 text-white animate-spin"
                                             xmlns="http://www.w3.org/2000/svg"
                                             fill="none"
                                             viewBox="0 0 24 24"
@@ -259,7 +259,7 @@ export default function Audit() {
                             {isGenerating ? (
                                 <div className="flex">
                                     <svg
-                                        className="h-5 mr-2 w-5 animate-spin text-white"
+                                        className="w-5 h-5 mr-2 text-white animate-spin"
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
                                         viewBox="0 0 24 24"
@@ -288,10 +288,7 @@ export default function Audit() {
                 </div>
                 <div className="md:w-1/2 pt-4 md:pt-0 bg-[#f3f6fd]">
                     {vulnerabilities && (
-                        <div
-                            className="relative bg-[#f9fafb] rounded-lg shadow-xl mx-6 md:mx-auto md:w-4/5 h-[80%] md:mt-24
-                                        md:p-8 overflow-y-auto"
-                        >
+                        <div className="relative bg-[#f9fafb] rounded-lg shadow-xl mx-6 md:mx-auto md:w-4/5 h-[80%] md:mt-24 md:p-8 overflow-y-auto">
                             <div className="absolute text-white left-0 top-0 p-4 flex gap-4 bg-[#282c34] w-full">
                                 <label
                                     className={`cursor-pointer ${
@@ -320,7 +317,7 @@ export default function Audit() {
                                     </label>
                                 )}
                             </div>
-                            <h3 className="text-xl mt-8 font-semibold">
+                            <h3 className="mt-8 text-xl font-semibold">
                                 {tab === 0
                                     ? "Possible vulnerabilities"
                                     : "Recommendations"}
