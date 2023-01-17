@@ -291,7 +291,7 @@ export default function Home() {
                 <div className="md:w-1/2 pt-4 md:pt-0 bg-[#f6f7fc] ">
                     {vulnerabilities && (
                         <div className="relative bg-[#f9fafb] rounded-lg shadow-xl mx-6 md:mx-auto md:w-4/5 h-[80%] md:mt-24 md:pb-2">
-                            <div className="absolute text-white left-0 top-0 p-4 flex gap-4 bg-[#212c3e] w-full">
+                            <div className="absolute rounded-t-lg text-white left-0 top-0 p-4 flex gap-4 bg-[#212c3e] w-full">
                                 <label
                                     className={`cursor-pointer font-bold ${
                                         tab === 0
