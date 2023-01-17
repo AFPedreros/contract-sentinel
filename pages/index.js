@@ -163,7 +163,7 @@ export default function Home() {
                     <textarea
                         placeholder="Paste your Smart Contract"
                         className="w-full text-white pt-20 pb-14 px-4 resize-none h-full bg-[#1e293b]
-                        outline-none  scrollbar scrollbar-thumb-[#787f89] scrollbar-track-transparent scrollbar-rounded-lg"
+                        outline-none scrollbar scrollbar-thumb-[#787f89] scrollbar-track-transparent"
                         value={userInput}
                         onChange={onUserChangedText}
                     />
@@ -176,7 +176,7 @@ export default function Home() {
                                         : "cursor-pointer"
                                 }  uppercase text-sm rounded-tl-lg w-1/2 px-4 py-4 text-white text-start
                                     font-semibold tracking-wide md:text-ml
-                                    bg-[#0f172a] border-[1px] border-[#91a0b5]`}
+                                    bg-[#212c3e] border-[1px] border-[#91a0b5]`}
                                 onClick={checkVulnerabilities}
                                 disabled={isGenerating}
                             >
@@ -215,7 +215,7 @@ export default function Home() {
                                         : "cursor-pointer"
                                 } uppercase text-sm rounded-tr-lg w-1/2 px-4 py-4 text-white text-start
                             font-semibold tracking-wide md:text-ml 
-                            bg-[#0f172a] border-[1px] border-[#91a0b5]`}
+                            bg-[#212c3e] border-[1px] border-[#91a0b5]`}
                                 onClick={checkRecommendations}
                                 disabled={isGenerating}
                             >
@@ -254,7 +254,7 @@ export default function Home() {
                                 isGenerating ? "cursor-wait" : " cursor-pointer"
                             } absolute bottom-0 left-0 uppercase text-sm rounded-t-lg w-[99.9%] px-4 py-4 
                         text-white text-start font-semibold tracking-wide md:text-ml
-                        bg-[#0f172a] border-[1px] border-[#91a0b5]`}
+                        bg-[#212c3e] border-[1px] border-[#91a0b5]`}
                             onClick={checkVulnerabilities}
                             disabled={isGenerating}
                         >
@@ -288,10 +288,10 @@ export default function Home() {
                         </button>
                     )}
                 </div>
-                <div className="md:w-1/2 pt-4 md:pt-0 bg-[#f6f7fc]">
+                <div className="md:w-1/2 pt-4 md:pt-0 bg-[#f6f7fc] ">
                     {vulnerabilities && (
-                        <div className="relative bg-[#f9fafb] rounded-lg shadow-xl mx-6 md:mx-auto md:w-4/5 h-[80%] md:mt-24 md:p-8 overflow-y-auto">
-                            <div className="absolute text-white left-0 top-0 p-4 flex gap-4 bg-[#0f172a] w-full">
+                        <div className="relative bg-[#f9fafb] rounded-lg shadow-xl mx-6 md:mx-auto md:w-4/5 h-[80%] md:mt-24 md:pb-2">
+                            <div className="absolute text-white left-0 top-0 p-4 flex gap-4 bg-[#212c3e] w-full">
                                 <label
                                     className={`cursor-pointer font-bold ${
                                         tab === 0
@@ -319,13 +319,15 @@ export default function Home() {
                                     </label>
                                 )}
                             </div>
-                            <h3 className="mt-8 text-xl font-semibold">
-                                {tab === 0
-                                    ? "Possible vulnerabilities"
-                                    : "Recommendations"}
-                            </h3>
+                            <div className="h-full overflow-y-auto md:p-8 scrollbar scrollbar-thumb-[#787f89] scrollbar-track-transparent">
+                                <h3 className="mt-8 text-xl font-semibold">
+                                    {tab === 0
+                                        ? "Possible vulnerabilities"
+                                        : "Recommendations"}
+                                </h3>
 
-                            {tab === 0 ? vulnerabilities : recommendations}
+                                {tab === 0 ? vulnerabilities : recommendations}
+                            </div>
                         </div>
                     )}
                 </div>
