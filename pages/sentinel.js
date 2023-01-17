@@ -12,7 +12,7 @@ mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN);
 
 // Audit smart contracts component
 // TODO: break the vulnerabilities and recommendations in separated components
-export default function Audit() {
+export default function Home() {
     const SocialLoginDynamic = dynamic(
         () => import("../components/Auth").then((res) => res.default),
         {
@@ -142,9 +142,9 @@ export default function Audit() {
             </Head>
             <header
                 className="absolute top-0 left-0 w-full px-6 py-8 flex items-center my-0
-                z-20 md:h-0 md:px-8 bg-[#4f5fe4]"
+                z-20 md:h-0 md:px-8 bg-[#0f172a] border-b-[1px] border-[#91a0b5]"
             >
-                <Link className="mx-auto" href="/">
+                <Link href="/">
                     <div className="flex items-center text-xl font-bold">
                         <Image
                             src={contractSentinelLogo}
@@ -162,7 +162,7 @@ export default function Audit() {
                 <div className="relative bg-[#f9fafb] md:w-1/2 h-full">
                     <textarea
                         placeholder="Paste your Smart Contract"
-                        className="w-full text-white pt-20 pb-14 px-4 resize-none h-full bg-[#282c34] outline-none"
+                        className="w-full text-white pt-20 pb-14 px-4 resize-none h-full bg-[#1e293b] outline-none"
                         value={userInput}
                         onChange={onUserChangedText}
                     />
@@ -281,7 +281,7 @@ export default function Audit() {
                                     <span>Generating...</span>
                                 </div>
                             ) : (
-                                "Generate"
+                                "Hello"
                             )}
                         </button>
                     )}
