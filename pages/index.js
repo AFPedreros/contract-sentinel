@@ -71,7 +71,7 @@ export default function Home() {
                 "We're experiencing exceptionally high demand. Please hang tight as we work on scaling our systems."
             );
         }
-
+        setTab(0);
         setIsGenerating(false);
         mixpanel.track("Button Clicked");
     }
@@ -114,6 +114,7 @@ export default function Home() {
                 "We're experiencing exceptionally high demand. Please hang tight as we work on scaling our systems."
             );
         }
+        setTab(1);
         setIsGenerating(false);
         mixpanel.track("Check Recommendations Clicked");
     }
@@ -290,7 +291,7 @@ export default function Home() {
                 </div>
                 <div className="md:w-1/2 pt-4 md:pt-0 bg-[#f6f7fc] ">
                     {vulnerabilities && (
-                        <div className="relative bg-[#f9fafb] rounded-lg shadow-xl mx-6 md:mx-auto md:w-4/5 h-[80%] md:mt-24 md:pb-2">
+                        <div className="relative bg-[#f9fafb] rounded-lg shadow-xl mx-6 md:mx-auto md:w-4/5 h-[80%] md:mt-24 md:py-2">
                             <div className="absolute rounded-t-lg text-white left-0 top-0 p-4 flex gap-4 bg-[#212c3e] w-full">
                                 <label
                                     className={`cursor-pointer font-bold ${
@@ -328,6 +329,15 @@ export default function Home() {
 
                                 {tab === 0 ? vulnerabilities : recommendations}
                             </div>
+                        </div>
+                    )}
+                    {vulnerabilities && (
+                        <div className="h-full overflow-y-auto md:p-8 scrollbar scrollbar-thumb-[#787f89] scrollbar-track-transparent">
+                            <h3 className="mt-8 text-xl font-semibold">
+                                Possible vulnerabilities
+                            </h3>
+
+                            {vulnerabilities}
                         </div>
                     )}
                 </div>

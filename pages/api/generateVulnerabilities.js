@@ -36,7 +36,7 @@ export default async function generateAction(req, res) {
             baseCompletion = await openai.createCompletion({
                 model: "text-davinci-003",
                 prompt: `${secondPrompt}`,
-                temperature: 1,
+                temperature: 0.7,
                 max_tokens: 700,
             });
 

@@ -18,7 +18,7 @@ export default async function generateAction(req, res) {
             model: "text-davinci-003",
             prompt: `${basePromptPrefix}
             ${req.body.input}`,
-            temperature: 0.5,
+            temperature: 0.7,
             max_tokens: 700,
         });
 
