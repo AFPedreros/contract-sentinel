@@ -1,345 +1,107 @@
-import Head from "next/head";
+import Head from 'next/head';
+import Header from '../components/Header';
+import Link from 'next/link';
+import Image from 'next/image';
+import bookImage from '../assets/book.png';
+import eyeImage from '../assets/eye.png';
 
-import { useState, Suspense } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import dynamic from "next/dynamic";
-import contractSentinelLogo from "../assets/logo.png";
-
-import mixpanel from "mixpanel-browser";
-
-mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN);
-
-// Audit smart contracts component
-// TODO: break the vulnerabilities and recommendations in separated components
 export default function Home() {
-    const SocialLoginDynamic = dynamic(
-        () => import("../components/Auth").then((res) => res.default),
-        {
-            ssr: false,
-        }
-    );
-    // State variables for user input, vulnerability output, vulnerabilities, recommendations, and loading state
-    const [userInput, setUserInput] = useState("");
-    const [vulnerabilityOutput, setVulnerabilityOutput] = useState("");
-
-    const [vulnerabilities, setVulnerabilities] = useState("");
-    const [recommendations, setRecommendations] = useState("");
-    const [tab, setTab] = useState(0);
-
-    const [isGenerating, setIsGenerating] = useState(false);
-    const [isSmartContract, setIsSmartContract] = useState(false);
-
-    // Function to call the API to check for vulnerabilities
-    async function checkVulnerabilities() {
-        // Reset recommendations and set loading state
-        setRecommendations("");
-        setIsGenerating(true);
-
-        console.log("Calling OpenAI...");
-        const response = await fetch("/api/generateVulnerabilities", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ userInput }),
-        });
-
-        const data = await response.json();
-        const { output } = data;
-
-        if (!output.text.includes("error")) {
-            setIsSmartContract(
-                output.text.toLowerCase().includes("vulnerability")
-            );
-            setVulnerabilityOutput(output.text);
-
-            const linesArray = format(output.text);
-            const vulnerabilities = linesArray.filter(
-                (x) => x !== "" && x !== " "
-            );
-            const vulElement = vulnerabilities.map((vul, index) => {
-                return (
-                    <p key={index} className="mt-4">
-                        {vul}
-                    </p>
-                );
-            });
-            setVulnerabilities(vulElement);
-        } else {
-            setVulnerabilities(
-                "We're experiencing exceptionally high demand. Please hang tight as we work on scaling our systems."
-            );
-        }
-        setTab(0);
-        setIsGenerating(false);
-        mixpanel.track("Button Clicked");
-    }
-
-    // Function to call the API to check for recommendations
-    async function checkRecommendations() {
-        setIsGenerating(true);
-        const input = `${userInput}
-        ${vulnerabilityOutput}
-        `;
-
-        console.log("Calling OpenAI...");
-        const response = await fetch("/api/generateRecommendations", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ input }),
-        });
-
-        const data = await response.json();
-        const { output } = data;
-
-        if (!output.text.includes("error")) {
-            const linesArray = format(output.text);
-            const recommendations = linesArray.filter(
-                (x) => x !== "" && x !== " "
-            );
-            const recElement = recommendations.map((rec, index) => {
-                return (
-                    <p key={index} className="mt-2">
-                        {rec}
-                    </p>
-                );
-            });
-
-            setRecommendations(recElement);
-        } else {
-            setRecommendations(
-                "We're experiencing exceptionally high demand. Please hang tight as we work on scaling our systems."
-            );
-        }
-        setTab(1);
-        setIsGenerating(false);
-        mixpanel.track("Check Recommendations Clicked");
-    }
-
-    // Function to handle changes to the user input
-    function onUserChangedText(e) {
-        setUserInput(e.target.value);
-    }
-
-    // Function to format a string into an array of lines
-    function format(formatString) {
-        const array = [];
-
-        // Split the string into lines and add each line to the array
-        formatString.split("\n").forEach((line) => {
-            array.push(line);
-        });
-
-        return array;
-    }
-
     return (
-        <div className="relative text-[#fff] h-screen md:overflow-hidden">
+        <div className='relative h-screen text-[#fff]'>
             <Head>
                 <title>Contract Sentinel</title>
             </Head>
-            <header
-                className="absolute top-0 left-0 w-full px-6 py-8 flex items-center my-0
-                z-20 md:h-0 md:px-8 bg-[#0f172a] border-b-[1px] border-[#91a0b5]"
-            >
-                <Link href="/">
-                    <div className="flex items-center text-xl font-bold">
-                        <Image
-                            src={contractSentinelLogo}
-                            alt="contract sentinel logo"
-                            height={60}
-                        />
-                        <h1>Contract Sentinel</h1>
-                    </div>
-                </Link>
-                {/* <Suspense fallback={<div>Loading...</div>}>
-                    <SocialLoginDynamic />
-                </Suspense> */}
-            </header>
-            <div className="md:flex text-[#575c66] h-full bg-[#fff]">
-                <div className="relative bg-[#f9fafb] md:w-1/2 h-full ">
-                    <textarea
-                        placeholder="Paste your Smart Contract"
-                        className="w-full text-white pt-20 pb-14 px-4 resize-none h-full bg-[#1e293b]
-                        outline-none scrollbar scrollbar-thumb-[#787f89] scrollbar-track-transparent"
-                        value={userInput}
-                        onChange={onUserChangedText}
-                    />
-                    {isSmartContract ? (
-                        <div className="absolute bottom-0 flex gap-[0.125rem] left-0 w-full">
-                            <button
-                                className={`${
-                                    isGenerating
-                                        ? "cursor-wait"
-                                        : "cursor-pointer"
-                                }  uppercase text-sm rounded-tl-lg w-1/2 px-4 py-4 text-white text-start
-                                    font-semibold tracking-wide md:text-ml
-                                    bg-[#212c3e] border-[1px] border-[#91a0b5]`}
-                                onClick={checkVulnerabilities}
-                                disabled={isGenerating}
-                            >
-                                {isGenerating ? (
-                                    <div className="flex text-[#787f89]">
-                                        <svg
-                                            className="w-5 h-5 mr-2 text-white animate-spin"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <circle
-                                                className="opacity-25"
-                                                cx="12"
-                                                cy="12"
-                                                r="10"
-                                                stroke="currentColor"
-                                                strokeWidth="4"
-                                            ></circle>
-                                            <path
-                                                className="opacity-75"
-                                                fill="currentColor"
-                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                            ></path>
-                                        </svg>
-                                        <span>Generating...</span>
-                                    </div>
-                                ) : (
-                                    "Find Vulnerabilities"
-                                )}
-                            </button>
-                            <button
-                                className={`${
-                                    isGenerating
-                                        ? "cursor-wait"
-                                        : "cursor-pointer"
-                                } uppercase text-sm rounded-tr-lg w-1/2 px-4 py-4 text-white text-start
-                            font-semibold tracking-wide md:text-ml 
-                            bg-[#212c3e] border-[1px] border-[#91a0b5]`}
-                                onClick={checkRecommendations}
-                                disabled={isGenerating}
-                            >
-                                {isGenerating ? (
-                                    <div className="flex text-[#787f89]">
-                                        <svg
-                                            className="w-5 h-5 mr-2 text-white animate-spin"
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <circle
-                                                className="opacity-25"
-                                                cx="12"
-                                                cy="12"
-                                                r="10"
-                                                stroke="currentColor"
-                                                strokeWidth="4"
-                                            ></circle>
-                                            <path
-                                                className="opacity-75"
-                                                fill="currentColor"
-                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                            ></path>
-                                        </svg>
-                                        <span>Generating...</span>
-                                    </div>
-                                ) : (
-                                    "get Code suggestions"
-                                )}
-                            </button>
-                        </div>
-                    ) : (
-                        <button
-                            className={`${
-                                isGenerating ? "cursor-wait" : " cursor-pointer"
-                            } absolute bottom-0 left-0 uppercase text-sm rounded-t-lg w-[99.9%] px-4 py-4 
-                        text-white text-start font-semibold tracking-wide md:text-ml
-                        bg-[#212c3e] border-[1px] border-[#91a0b5]`}
-                            onClick={checkVulnerabilities}
-                            disabled={isGenerating}
+            <div className='absolute top-0 left-0 z-20 w-full'>
+                <Header />
+            </div>
+            <div className='flex h-screen w-full bg-[url(../assets/bg.png)] bg-cover px-6 text-center'>
+                <div className='md:w-3/5 flex flex-col items-center w-full mx-auto my-auto text-center'>
+                    <h1 className='md:max-w-3xl md:text-5xl md:leading-snug text-4xl font-bold text-white'>
+                        Audit your smart contracts easy and
+                        <span className='text-indigo-600'> fast</span>
+                    </h1>
+                    <p className='w-fit my-2 font-semibold'>
+                        Find errors and vulnerabilities in smart contracts using
+                        this AI-powered tool
+                    </p>
+                    <div className='flex gap-2 mt-6'>
+                        <Link
+                            className='mr-3 hidden rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-bold text-white focus:outline-none focus:ring-4 focus:ring-gray-800 hover:bg-indigo-900 md:mr-0 md:block'
+                            href='/sentinel'
                         >
-                            {isGenerating ? (
-                                <div className="flex text-[#787f89]">
-                                    <svg
-                                        className="w-5 h-5 mr-2 text-white animate-spin"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <circle
-                                            className="opacity-25"
-                                            cx="12"
-                                            cy="12"
-                                            r="10"
-                                            stroke="currentColor"
-                                            strokeWidth="4"
-                                        ></circle>
-                                        <path
-                                            className="opacity-75"
-                                            fill="currentColor"
-                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                        ></path>
-                                    </svg>
-                                    <span>Generating...</span>
-                                </div>
-                            ) : (
-                                "Find Vulnerabilities"
-                            )}
-                        </button>
-                    )}
+                            Audit Contract
+                        </Link>
+                        <Link
+                            className='mr-3 hidden rounded-lg bg-gray-700 px-5 py-2.5 text-center text-sm font-bold text-white focus:outline-none focus:ring-4 focus:ring-indigo-900 hover:bg-gray-800 md:mr-0 md:block'
+                            href='/contact'
+                        >
+                            Request Demo
+                        </Link>
+                    </div>
                 </div>
-                <div className="md:w-1/2 pt-4 md:pt-0 bg-[#f6f7fc] ">
-                    {vulnerabilities && (
-                        <div className="relative bg-[#f9fafb] rounded-lg shadow-xl mx-6 md:mx-auto md:w-4/5 h-[80%] md:mt-24 md:py-2">
-                            <div className="absolute rounded-t-lg text-white left-0 top-0 p-4 flex gap-4 bg-[#212c3e] w-full">
-                                <label
-                                    className={`cursor-pointer font-bold ${
-                                        tab === 0
-                                            ? "text-[#4351C5]"
-                                            : "text-[#787f89]"
-                                    }`}
-                                    onClick={() => {
-                                        setTab(0);
-                                    }}
-                                >
-                                    Vulnerabilities
-                                </label>
-                                {recommendations && (
-                                    <label
-                                        className={`cursor-pointer font-bold ${
-                                            tab === 1
-                                                ? "text-[#4351C5]"
-                                                : "text-[#787f89]"
-                                        }`}
-                                        onClick={() => {
-                                            setTab(1);
-                                        }}
-                                    >
-                                        Code suggestions
-                                    </label>
-                                )}
-                            </div>
-                            <div className="h-full overflow-y-auto md:p-8 scrollbar scrollbar-thumb-[#787f89] scrollbar-track-transparent">
-                                <h3 className="mt-8 text-xl font-semibold">
-                                    {tab === 0
-                                        ? "Possible vulnerabilities"
-                                        : "Recommendations"}
-                                </h3>
+            </div>
+            <div className='bg-slate-100 flex w-full h-screen px-6 text-center text-black'>
+                <div className='md:w-3/5 flex flex-col items-center w-full mx-auto my-auto text-center'>
+                    <h2 className='md:max-w-3xl md:text-5xl md:leading-snug text-4xl font-bold'>
+                        <span className='text-indigo-600'>Empowering </span>
+                        the Future: AI and Smart Contract
+                    </h2>
+                    <div className='md:max-w-xl mx-auto'>
+                        <Image
+                            className='mx-auto'
+                            src={bookImage}
+                            alt='book with an eye'
+                            width={300}
+                        />
+                    </div>
+                    <p className='w-fit my-2 font-semibold'>
+                        Unlock the power of AI and Smart Contracts to pave the
+                        way for a more secure, trusted, and decentralized future
+                        where power is placed in the hands of the people, and
+                        trust is built on cutting-edge technology
+                    </p>
 
-                                {tab === 0 ? vulnerabilities : recommendations}
-                            </div>
-                        </div>
-                    )}
-                    {vulnerabilities && (
-                        <div className="h-full overflow-y-auto md:p-8 scrollbar scrollbar-thumb-[#787f89] scrollbar-track-transparent">
-                            <h3 className="mt-8 text-xl font-semibold">
-                                Possible vulnerabilities
-                            </h3>
+                    <Link
+                        className='mr-3 mt-6 hidden w-fit rounded-lg bg-gray-700 px-5 py-2.5 text-center text-sm font-bold text-white focus:outline-none focus:ring-4 focus:ring-indigo-900 hover:bg-gray-800 md:mr-0 md:block'
+                        href='/sentinel'
+                    >
+                        Try Yourself
+                    </Link>
+                </div>
+            </div>
+            <div className='flex h-screen w-full items-center bg-[url(../assets/bg.png)] bg-cover px-6 text-center'>
+                <div className='md:w-1/2 w-full mx-auto'>
+                    <div className='md:max-w-xl mx-auto'>
+                        <h2 className='text-start md:max-w-3xl md:text-5xl md:leading-snug text-4xl font-bold'>
+                            Get your smart contract
+                            <label className='text-indigo-600'> audited</label>
+                        </h2>
+                        <p className='w-fit text-start my-6'>
+                            Simply enter your smart contract source code and our
+                            app will quickly scan for any vulnerabilities. In
+                            addition to identifying potential issues, our app
+                            also provides specific code suggestions to help you
+                            fix them, ensuring the security and integrity of
+                            your smart contracts
+                        </p>
 
-                            {vulnerabilities}
-                        </div>
-                    )}
+                        <Link
+                            className='mr-3 mt-6 hidden w-fit rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-bold text-white focus:outline-none focus:ring-4 focus:ring-gray-800 hover:bg-indigo-900 md:mr-0 md:block'
+                            href='/sentinel'
+                        >
+                            Learn More
+                        </Link>
+                    </div>
+                </div>
+                <div className='md:block md:w-1/2 hidden w-full mx-auto my-auto'>
+                    <div className='md:max-w-xl mx-auto'>
+                        <Image
+                            className='mx-auto'
+                            src={eyeImage}
+                            alt='book with an eye'
+                            width={460}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,101 +1,124 @@
-import Link from "next/link";
-import dynamic from "next/dynamic";
-import { useState, useEffect, Suspense } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-// Header component
+import contractSentinelLogo from '../assets/logo-blanco.png';
+
 export default function Header() {
-    const SocialLoginDynamic = dynamic(
-        () => import("./Auth").then((res) => res.default),
-        {
-            ssr: false,
-        }
-    );
-
-    useEffect(() => {
-        console.log("re-render");
-    }, []);
-    // Toggle state for mobile menu
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    // Function to toggle mobile menu
     function toggleMobileMenu() {
         setMobileMenuOpen((prev) => !prev);
-        const overflow = mobileMenuOpen ? "visible" : "hidden";
+        const overflow = mobileMenuOpen ? 'visible' : 'hidden';
         document.body.style.overflow = overflow;
     }
 
     return (
-        <header
-            className="w-full px-6 py-6 flex items-center justify-between my-0 mx-auto
-        z-20 md:h-16 md:px-56"
-        >
-            <Link className="text-xl font-bold" href="/">
-                Contract Sentinel
-            </Link>
-
-            <div className="hidden items-center  md:gap-10 md:flex">
-                <Link
-                    className="font-bold hover:text-[#4f5fe4]"
-                    href="/sentinel"
+        <nav class='top-0 left-0 z-20 w-full bg-transparent px-2 py-2.5 backdrop-blur-lg sm:px-4'>
+            <div class='container flex flex-wrap items-center md:justify-between'>
+                <a
+                    href='https://contract-sentinel.vercel.app/'
+                    class='mx-auto flex items-center md:mx-0'
                 >
-                    Sentinel
-                </Link>
-                <Link className="font-bold hover:text-[#4f5fe4]" href="/about">
-                    About
-                </Link>
-                <Link
-                    className="font-bold hover:text-[#4f5fe4]"
-                    href="/contact"
-                >
-                    Contact
-                </Link>
-                {/* <Suspense fallback={<div>Loading...</div>}>
-                    <SocialLoginDynamic />
-                </Suspense> */}
-            </div>
-            <button onClick={toggleMobileMenu} className="block md:hidden">
-                {mobileMenuOpen ? (
-                    <FontAwesomeIcon icon={faX} size="xl" />
-                ) : (
-                    <FontAwesomeIcon icon={faBars} size="xl" />
-                )}
-            </button>
-
-            {mobileMenuOpen ? (
-                <div
-                    className="md:hidden items-center absolute flex flex-col top-0 mt-16 right-0
-                h-screen w-full bg-[#fff]"
-                >
+                    <Image
+                        src={contractSentinelLogo}
+                        alt='contract sentinel logo'
+                        height={40}
+                    />
+                    <span class='self-center whitespace-nowrap text-xl font-semibold text-white'>
+                        Contract Sentinel
+                    </span>
+                </a>
+                <div class='md:order-2'>
                     <Link
-                        className="font-bold text-xl py-4 hover:text-[#4f5fe4]"
-                        href="/sentinel"
+                        className='mr-3 hidden rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-bold text-white focus:outline-none focus:ring-4 focus:ring-gray-800 hover:bg-indigo-900 md:mr-0 md:block'
+                        href='/sentinel'
+                    >
+                        Sentinel App
+                    </Link>
+                </div>
+                <button
+                    type='button'
+                    class='inline-flex items-center rounded-lg p-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 hover:bg-transparent md:hidden'
+                    aria-expanded='false'
+                    onClick={toggleMobileMenu}
+                >
+                    <span class='sr-only'>Open main menu</span>
+                    <svg
+                        class='h-6 w-6'
+                        aria-hidden='true'
+                        fill='white'
+                        viewBox='0 0 20 20'
+                    >
+                        <path
+                            fill-rule='evenodd'
+                            d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z'
+                            clip-rule='evenodd'
+                        ></path>
+                    </svg>
+                </button>
+                <div class='hidden w-full items-center justify-between md:order-1 md:flex md:w-auto'>
+                    <ul class='mt-4 flex flex-col p-4 md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-bold'>
+                        <li>
+                            <Link
+                                class='block rounded py-2 pl-3 pr-4 text-white hover:text-indigo-600 md:bg-transparent md:p-0 md:text-white'
+                                href='/'
+                            >
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                class='block rounded py-2 pl-3 pr-4 text-white hover:text-indigo-600 md:bg-transparent md:p-0 md:text-white'
+                                href='/about'
+                            >
+                                About
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                class='block rounded py-2 pl-3 pr-4 text-white hover:text-indigo-600 md:bg-transparent md:p-0 md:text-white'
+                                href='/contact'
+                            >
+                                Contact
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {mobileMenuOpen ? (
+                <div className='md:hidden flex flex-col items-center w-full h-screen mt-10 text-indigo-600'>
+                    <Link
+                        className='py-4 text-xl font-bold hover:text-[#4f5fe4]'
+                        href='/sentinel'
                         onClick={toggleMobileMenu}
                     >
                         Sentinel
                     </Link>
                     <Link
-                        className="font-bold text-xl py-4 hover:text-[#4f5fe4]"
-                        href="/about"
+                        className='py-4 text-xl font-bold hover:text-[#4f5fe4]'
+                        href='/about'
                         onClick={toggleMobileMenu}
                     >
                         About
                     </Link>
                     <Link
-                        className="font-bold text-xl py-4 hover:text-[#4f5fe4]"
-                        href="/contact"
+                        className='py-4 text-xl font-bold hover:text-[#4f5fe4]'
+                        href='/contact'
                         onClick={toggleMobileMenu}
                     >
                         Contact
                     </Link>
-                    {/* <Suspense fallback={<div>Loading...</div>}>
-                        <SocialLoginDynamic />
-                    </Suspense> */}
+                    <Link
+                        className='mt-3 rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-bold text-white focus:outline-none focus:ring-4 focus:ring-indigo-900 hover:bg-indigo-900 md:mr-0 md:block'
+                        href='/'
+                    >
+                        Sentinel App
+                    </Link>
                 </div>
             ) : (
                 <></>
             )}
-        </header>
+        </nav>
     );
 }
