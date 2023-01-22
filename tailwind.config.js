@@ -6,7 +6,11 @@ module.exports = {
         './components/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
-        extend: {},
+        extend: {
+            backgroundImage: {
+                my_bg_image: "url('../assets/bg.png')",
+            },
+        },
     },
-    plugins: [require('tailwind-scrollbar'),  require('flowbite/plugin')],
+    plugins: [require('tailwind-scrollbar'), require('flowbite/plugin')],
 };
