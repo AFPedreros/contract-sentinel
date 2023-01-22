@@ -130,7 +130,7 @@ export default function Home() {
     }
 
     return (
-        <div className='relative h-screen overflow-hidden bg-[url(../assets/bg.png)] bg-cover text-white'>
+        <div className='relative h-screen overflow-hidden bg-my_bg_image bg-cover text-white'>
             <Head>
                 <title>Contract Sentinel</title>
             </Head>
@@ -149,8 +149,8 @@ export default function Home() {
                     </span>
                 </a>
             </nav>
-            <div className='md:flex h-full text-white'>
-                <div className='md:w-1/2 relative h-full'>
+            <div className='h-full text-white md:flex'>
+                <div className='relative h-full md:w-1/2'>
                     <textarea
                         placeholder='Paste your Smart Contract'
                         className='h-full w-full resize-none border-none bg-transparent px-4 pt-20 pb-14 scrollbar  scrollbar-track-transparent scrollbar-thumb-[#7285a0] focus:outline-none'
@@ -171,7 +171,7 @@ export default function Home() {
                                 {isGenerating ? (
                                     <div className='flex text-gray-800'>
                                         <svg
-                                            className='animate-spin w-5 h-5 mr-2 text-white'
+                                            className='mr-2 h-5 w-5 animate-spin text-white'
                                             xmlns='http://www.w3.org/2000/svg'
                                             fill='none'
                                             viewBox='0 0 24 24'
@@ -208,7 +208,7 @@ export default function Home() {
                                 {isGenerating ? (
                                     <div className='flex text-gray-800'>
                                         <svg
-                                            className='animate-spin w-5 h-5 mr-2 text-white'
+                                            className='mr-2 h-5 w-5 animate-spin text-white'
                                             xmlns='http://www.w3.org/2000/svg'
                                             fill='none'
                                             viewBox='0 0 24 24'
@@ -245,7 +245,7 @@ export default function Home() {
                             {isGenerating ? (
                                 <div className='flex text-gray-800'>
                                     <svg
-                                        className='animate-spin w-5 h-5 mr-2 text-white'
+                                        className='mr-2 h-5 w-5 animate-spin text-white'
                                         xmlns='http://www.w3.org/2000/svg'
                                         fill='none'
                                         viewBox='0 0 24 24'
@@ -272,10 +272,10 @@ export default function Home() {
                         </button>
                     )}
                 </div>
-                <div className='md:w-1/2 md:pt-0 pt-4 border-l border-gray-700'>
+                <div className='border-l border-gray-700 pt-4 md:w-1/2 md:pt-0'>
                     {vulnerabilities && (
                         <div className='relative mx-6 h-[80%] rounded-lg shadow-xl md:mx-auto md:mt-24 md:w-4/5 md:py-2'>
-                            <div className='backdrop-blur-lg absolute top-0 left-0 flex w-full gap-4 p-4 text-white rounded-t-lg'>
+                            <div className='absolute top-0 left-0 flex w-full gap-4 rounded-t-lg p-4 text-white backdrop-blur-lg'>
                                 <label
                                     className={`cursor-pointer font-bold ${
                                         tab === 0

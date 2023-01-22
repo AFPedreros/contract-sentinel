@@ -69,7 +69,7 @@ export default function Home() {
                     </Link>
                 </div>
             </div>
-            <div className='flex h-screen w-full items-center bg-[url(../assets/bg.png)] bg-cover px-6 text-center'>
+            <div className='flex h-screen w-full items-center bg-my_bg_image bg-cover px-6 text-center'>
                 <div className='mx-auto w-full md:w-1/2'>
                     <div className='mx-auto md:max-w-xl'>
                         <h2 className='text-start text-4xl font-bold md:max-w-3xl md:text-5xl md:leading-snug'>

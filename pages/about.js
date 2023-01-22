@@ -14,23 +14,23 @@ export default function About() {
                 <Header />
             </div>
 
-            <div className='flex h-screen w-full bg-[url(../assets/bg.png)] bg-cover px-6 text-center'>
-                <div className='md:w-3/5 w-full mx-auto my-auto text-center'>
-                    <h1 className='md:max-w-3xl md:text-5xl md:leading-snug mx-auto text-4xl font-bold text-white'>
+            <div className='flex h-screen w-full bg-my_bg_image bg-cover px-6 text-center'>
+                <div className='mx-auto my-auto w-full text-center md:w-3/5'>
+                    <h1 className='mx-auto text-4xl font-bold text-white md:max-w-3xl md:text-5xl md:leading-snug'>
                         We <span className='text-indigo-600'>empower </span>
                         teams through AI smart contract auditing
                     </h1>
                 </div>
             </div>
-            <div className='bg-slate-100 flex items-center w-full h-screen px-6 text-center bg-cover'>
-                <div className='md:w-1/2 w-full mx-auto'>
-                    <div className='md:max-w-xl mx-auto'>
-                        <h2 className='text-start md:max-w-3xl md:text-5xl md:leading-snug text-4xl font-bold'>
+            <div className='flex h-screen w-full items-center bg-slate-100 bg-cover px-6 text-center'>
+                <div className='mx-auto w-full md:w-1/2'>
+                    <div className='mx-auto md:max-w-xl'>
+                        <h2 className='text-start text-4xl font-bold md:max-w-3xl md:text-5xl md:leading-snug'>
                             Empowering Teams to Confidently
                             <label className='text-indigo-600'> Audit </label>
                             Smart Contracts
                         </h2>
-                        <p className='w-fit text-start my-6'>
+                        <p className='my-6 w-fit text-start'>
                             Our mission is to provide fast and easy-to-use
                             AI-powered auditing for smart contracts. Our goal is
                             to assist small and medium size teams in checking
@@ -48,8 +48,8 @@ export default function About() {
                         </p>
                     </div>
                 </div>
-                <div className='md:block md:w-1/2 hidden w-full mx-auto my-auto'>
-                    <div className='md:max-w-xl mx-auto'>
+                <div className='mx-auto my-auto hidden w-full md:block md:w-1/2'>
+                    <div className='mx-auto md:max-w-xl'>
                         <Image
                             className='mx-auto'
                             src={bookImage}
