@@ -16,7 +16,7 @@ export default function Home() {
             </div>
             <div className='flex h-screen w-full bg-[url(../assets/bg.png)] bg-cover px-6 text-center'>
                 <div className='md:w-3/5 flex flex-col items-center w-full mx-auto my-auto text-center'>
-                    <h1 className='md:max-w-3xl md:text-5xl md:leading-snug text-4xl font-bold text-white'>
+                    <h1 className='md:max-w-3xl md:text-5xl md:leading-snug mx-auto text-4xl font-bold text-white'>
                         Audit your smart contracts easy and
                         <span className='text-indigo-600'> fast</span>
                     </h1>

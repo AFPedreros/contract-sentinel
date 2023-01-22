@@ -15,8 +15,8 @@ export default function About() {
             </div>
 
             <div className='flex h-screen w-full bg-[url(../assets/bg.png)] bg-cover px-6 text-center'>
-                <div className='md:w-3/5 w-full mx-auto my-auto'>
-                    <h1 className='md:max-w-3xl md:text-5xl md:leading-snug text-4xl font-bold text-white'>
+                <div className='md:w-3/5 w-full mx-auto my-auto text-center'>
+                    <h1 className='md:max-w-3xl md:text-5xl md:leading-snug mx-auto text-4xl font-bold text-white'>
                         We <span className='text-indigo-600'>empower </span>
                         teams through AI smart contract auditing
                     </h1>
