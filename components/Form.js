@@ -80,7 +80,7 @@ export default function Form() {
                 name='message'
                 value={form.message || ''}
                 onChange={handleChange}
-                class='block h-fit max-h-64 w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-indigo-600 focus:ring-indigo-600'
+                class='block h-fit w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white placeholder-gray-400 focus:border-indigo-600 focus:ring-indigo-600'
             />
 
             <button className='hover:bg-indigo-900 md:w-full md:text-base w-full py-3 text-sm font-bold text-white bg-indigo-600 rounded-lg cursor-pointer'>

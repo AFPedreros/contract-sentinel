@@ -15,12 +15,14 @@ export default function Contact() {
             </div>
             <div className='bg-my_bg_image flex w-full h-screen px-6 text-center bg-cover'>
                 <div className='md:w-3/5 flex flex-col items-center w-full mx-auto my-auto'>
-                    <h1 className='md:max-w-3xl md:text-5xl md:leading-snug text-4xl font-bold text-white'>
+                    <h1 className='md:leading-snugtext-4xl md:max-w-3xl md:text-5xl font-bold text-white'>
                         Help us in our mission to
                         <span className='text-indigo-600'> secure </span>
                         the future of web3!
                     </h1>
-                    <Form />
+                    <div className='mt-8 max-h-[28rem] overflow-auto'>
+                        <Form />
+                    </div>
                 </div>
             </div>
         </div>
