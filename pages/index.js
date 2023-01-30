@@ -35,7 +35,7 @@ export default function Home() {
                             className='mr-3 hidden rounded-lg bg-gray-700 px-5 py-2.5 text-center text-sm font-bold text-white focus:outline-none focus:ring-4 focus:ring-indigo-900 hover:bg-gray-800 md:mr-0 md:block'
                             href='/contact'
                         >
-                            Request Demo
+                            Talk With Us
                         </Link>
                     </div>
                 </div>

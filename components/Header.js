@@ -14,22 +14,22 @@ export default function Header() {
     }
 
     return (
-        <nav class='top-0 left-0 z-20 w-full bg-transparent px-2 py-2.5 backdrop-blur-lg sm:px-4'>
-            <div class='container flex flex-wrap items-center md:justify-between'>
+        <nav className='top-0 left-0 z-20 w-full bg-transparent px-2 py-2.5 backdrop-blur-lg sm:px-4'>
+            <div className='container flex flex-wrap items-center md:justify-between'>
                 <a
                     href='https://contract-sentinel.vercel.app/'
-                    class='mx-auto flex items-center md:mx-0'
+                    className='mx-auto flex items-center md:mx-0'
                 >
                     <Image
                         src={contractSentinelLogo}
                         alt='contract sentinel logo'
                         height={40}
                     />
-                    <span class='self-center whitespace-nowrap text-xl font-semibold text-white'>
+                    <span className='self-center whitespace-nowrap text-xl font-semibold text-white'>
                         Contract Sentinel
                     </span>
                 </a>
-                <div class='md:order-2'>
+                <div className='md:order-2'>
                     <Link
                         className='mr-3 hidden rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-bold text-white focus:outline-none focus:ring-4 focus:ring-gray-800 hover:bg-indigo-900 md:mr-0 md:block'
                         href='/sentinel'
@@ -39,13 +39,13 @@ export default function Header() {
                 </div>
                 <button
                     type='button'
-                    class='inline-flex items-center rounded-lg p-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 hover:bg-transparent md:hidden'
+                    className='inline-flex items-center rounded-lg p-2 text-sm text-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 hover:bg-transparent md:hidden'
                     aria-expanded='false'
                     onClick={toggleMobileMenu}
                 >
-                    <span class='sr-only'>Open main menu</span>
+                    <span className='sr-only'>Open main menu</span>
                     <svg
-                        class='h-6 w-6'
+                        className='h-6 w-6'
                         aria-hidden='true'
                         fill='white'
                         viewBox='0 0 20 20'
@@ -57,11 +57,11 @@ export default function Header() {
                         ></path>
                     </svg>
                 </button>
-                <div class='hidden w-full items-center justify-between md:order-1 md:flex md:w-auto'>
-                    <ul class='mt-4 flex flex-col p-4 md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-bold'>
+                <div className='hidden w-full items-center justify-between md:order-1 md:flex md:w-auto'>
+                    <ul className='mt-4 flex flex-col p-4 md:mt-0 md:flex-row md:space-x-8 md:text-sm md:font-bold'>
                         <li>
                             <Link
-                                class='block rounded py-2 pl-3 pr-4 text-white hover:text-indigo-600 md:bg-transparent md:p-0 md:text-white'
+                                className='block rounded py-2 pl-3 pr-4 text-white hover:text-indigo-600 md:bg-transparent md:p-0 md:text-white'
                                 href='/'
                             >
                                 Home
@@ -69,7 +69,7 @@ export default function Header() {
                         </li>
                         <li>
                             <Link
-                                class='block rounded py-2 pl-3 pr-4 text-white hover:text-indigo-600 md:bg-transparent md:p-0 md:text-white'
+                                className='block rounded py-2 pl-3 pr-4 text-white hover:text-indigo-600 md:bg-transparent md:p-0 md:text-white'
                                 href='/about'
                             >
                                 About
@@ -77,7 +77,7 @@ export default function Header() {
                         </li>
                         <li>
                             <Link
-                                class='block rounded py-2 pl-3 pr-4 text-white hover:text-indigo-600 md:bg-transparent md:p-0 md:text-white'
+                                className='block rounded py-2 pl-3 pr-4 text-white hover:text-indigo-600 md:bg-transparent md:p-0 md:text-white'
                                 href='/contact'
                             >
                                 Contact
@@ -87,7 +87,7 @@ export default function Header() {
                 </div>
             </div>
             {mobileMenuOpen ? (
-                <div className='md:hidden flex flex-col items-center w-full h-screen mt-10 text-indigo-600'>
+                <div className='mt-10 flex h-screen w-full flex-col items-center text-indigo-600 md:hidden'>
                     <Link
                         className='py-4 text-xl font-bold hover:text-[#4f5fe4]'
                         href='/sentinel'

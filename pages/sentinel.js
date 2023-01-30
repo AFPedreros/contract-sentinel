@@ -10,7 +10,6 @@ import mixpanel from 'mixpanel-browser';
 mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN);
 
 // Audit smart contracts component
-// TODO: break the vulnerabilities and recommendations in separated components
 export default function Home() {
     // State variables for user input, vulnerability output, vulnerabilities, recommendations, and loading state
     const [userInput, setUserInput] = useState('');
@@ -137,14 +136,14 @@ export default function Home() {
             <nav className='absolute top-0 left-0 z-20 w-full bg-transparent px-2 py-2.5 backdrop-blur-lg sm:px-4'>
                 <a
                     href='https://contract-sentinel.vercel.app/'
-                    class='mx-auto flex items-center md:mx-0'
+                    className='mx-auto flex items-center md:mx-0'
                 >
                     <Image
                         src={contractSentinelLogo}
                         alt='contract sentinel logo'
                         height={40}
                     />
-                    <span class='self-center whitespace-nowrap text-xl font-semibold text-white'>
+                    <span className='self-center whitespace-nowrap text-xl font-semibold text-white'>
                         Contract Sentinel
                     </span>
                 </a>
